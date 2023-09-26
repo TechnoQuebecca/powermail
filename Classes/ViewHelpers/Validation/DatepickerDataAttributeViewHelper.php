@@ -73,7 +73,6 @@ class DatepickerDataAttributeViewHelper extends AbstractValidationViewHelper
     /**
      * Because moment.js needs a different format writings, we need to convert this
      * "Y-m-d H:i" => "YYYY-MM-DD HH:mm"
-     * @param string $format
      * @return string
      */
     protected function convertFormatForMomentJs(string $format): string

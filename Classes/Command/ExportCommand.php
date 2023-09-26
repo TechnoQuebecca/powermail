@@ -32,7 +32,7 @@ class ExportCommand extends Command
         $this->addArgument('subject', InputArgument::OPTIONAL, 'Mail subject', 'New mail export');
         $this->addArgument('pageUid', InputArgument::OPTIONAL, 'Page Id with existing mails', 0);
         $this->addArgument('domain', InputArgument::OPTIONAL, 'Domainname for linkgeneration', 'https://domain.org/');
-        $this->addArgument('period', InputArgument::OPTIONAL, 'Mails that are not older than this seconds', 2592000);
+        $this->addArgument('period', InputArgument::OPTIONAL, 'Mails that are not older than this seconds', 2_592_000);
         $this->addArgument('attachment', InputArgument::OPTIONAL, 'Add export file as attachment to mail', true);
         $this->addArgument('fieldList', InputArgument::OPTIONAL, 'Define fields with a uid list (empty = all)', '');
         $this->addArgument('format', InputArgument::OPTIONAL, 'Fileformat can be "xls" or "csv"', 'xls');
@@ -95,7 +95,6 @@ class ExportCommand extends Command
     /**
      * Create a filter array from given period
      *
-     * @param int $period
      * @return array
      */
     protected function getFilterVariables(int $period): array

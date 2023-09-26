@@ -29,7 +29,6 @@ class TrimViewHelper extends AbstractViewHelper
     /**
      * Replace duplicated whitespace with a single space
      *
-     * @param string $string
      * @return string
      */
     protected function removeDuplicatedWhitespace(string $string): string
@@ -40,7 +39,6 @@ class TrimViewHelper extends AbstractViewHelper
     /**
      * Trim every single line
      *
-     * @param string $string
      * @return string
      */
     protected function removeWhiteSpaceForEveryLine(string $string): string
@@ -51,7 +49,6 @@ class TrimViewHelper extends AbstractViewHelper
     /**
      * Remove space in csv list (separated with semicolons)
      *
-     * @param string $string
      * @return string
      */
     protected function removeCsvWhitespace(string $string): string

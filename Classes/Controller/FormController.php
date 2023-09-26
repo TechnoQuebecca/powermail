@@ -73,7 +73,7 @@ class FormController extends AbstractController
         }
         /** @var Form $form */
         $form = $this->formRepository->findByUid($this->settings['main']['form']);
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'BeforeRenderView', [$form, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'BeforeRenderView', [$form, $this]);
         SessionUtility::saveFormStartInSession($this->settings, $form);
         $this->view->assignMultiple(
             [
@@ -114,7 +114,6 @@ class FormController extends AbstractController
     /**
      * Show a "Are your values ok?" message before final submit (if turned on)
      *
-     * @param Mail $mail
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\UploadValidator", param="mail")
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\InputValidator", param="mail")
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\PasswordValidator", param="mail")
@@ -133,7 +132,7 @@ class FormController extends AbstractController
      */
     public function confirmationAction(Mail $mail): ResponseInterface
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'BeforeRenderView', [$mail, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'BeforeRenderView', [$mail, $this]);
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->dataProcessorRunner->callDataProcessors(
             $mail,
@@ -171,8 +170,6 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
-     * @param string $hash
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\UploadValidator", param="mail")
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\InputValidator", param="mail")
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\PasswordValidator", param="mail")
@@ -194,7 +191,7 @@ class FormController extends AbstractController
      */
     public function createAction(Mail $mail, string $hash = ''): ResponseInterface
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'BeforeRenderView', [$mail, $hash, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'BeforeRenderView', [$mail, $hash, $this]);
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->dataProcessorRunner->callDataProcessors(
             $mail,
@@ -204,7 +201,7 @@ class FormController extends AbstractController
         );
         if ($this->isMailPersistActive($hash)) {
             $this->saveMail($mail);
-            $this->signalDispatch(__CLASS__, __FUNCTION__ . 'AfterMailDbSaved', [$mail, $this]);
+            $this->signalDispatch(self::class, __FUNCTION__ . 'AfterMailDbSaved', [$mail, $this]);
         }
         if ($this->isNoOptin($mail, $hash)) {
             $this->sendMailPreflight($mail, $hash);
@@ -222,7 +219,7 @@ class FormController extends AbstractController
             $this->persistenceManager->persistAll();
         }
 
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'AfterSubmitView', [$mail, $hash, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'AfterSubmitView', [$mail, $hash, $this]);
         $this->prepareOutput($mail);
 
         $finisherRunner = GeneralUtility::makeInstance(FinisherRunner::class);
@@ -239,8 +236,6 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
-     * @param string $hash
      * @return void
      */
     protected function sendMailPreflight(Mail $mail, string $hash = ''): void
@@ -267,13 +262,12 @@ class FormController extends AbstractController
                 }
             }
         } catch (\Exception $exception) {
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->critical('Mail could not be sent', [$exception->getMessage()]);
         }
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @throws InvalidConfigurationTypeException
      * @throws InvalidExtensionNameException
@@ -300,7 +294,6 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @throws Exception
      * @throws ExtensionConfigurationExtensionNotConfiguredException
@@ -333,7 +326,7 @@ class FormController extends AbstractController
      */
     public function optinConfirmAction(int $mail, string $hash): ResponseInterface
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'BeforeRenderView', [$mail, $hash, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'BeforeRenderView', [$mail, $hash, $this]);
         $mail = $this->mailRepository->findByUid($mail);
         $response = $this->forwardIfFormParamsDoNotMatchForOptinConfirm($mail);
         if ($response !== null) {
@@ -347,7 +340,7 @@ class FormController extends AbstractController
                 $mail->setHidden(false);
                 $this->mailRepository->update($mail);
                 $this->persistenceManager->persistAll();
-                $this->signalDispatch(__CLASS__, __FUNCTION__ . 'AfterPersist', [$mail, $hash, $this]);
+                $this->signalDispatch(self::class, __FUNCTION__ . 'AfterPersist', [$mail, $hash, $this]);
 
                 return (new ForwardResponse('create'))->withArguments(['mail' => $mail, 'hash' => $hash]);
             }
@@ -359,15 +352,13 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param int $mail
-     * @param string $hash
      * @return ResponseInterface
      * @throws \Exception
      * @noinspection PhpUnused
      */
     public function disclaimerAction(int $mail, string $hash): ResponseInterface
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'BeforeRenderView', [$mail, $hash, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'BeforeRenderView', [$mail, $hash, $this]);
         $mail = $this->mailRepository->findByUid($mail);
         $status = false;
         if ($mail !== null && HashUtility::isHashValid($hash, $mail, 'disclaimer')) {
@@ -424,10 +415,10 @@ class FormController extends AbstractController
         $this->conf = $configurationService->getTypoScriptConfiguration();
         $this->settings = ConfigurationUtility::mergeTypoScript2FlexForm($this->settings);
         if (ArrayUtility::isValidPath($this->settings, 'debug/settings') && $this->settings['debug']['settings']) {
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->info('Powermail settings', $this->settings);
         }
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'Settings', [$this, &$this->settings]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'Settings', [$this, &$this->settings]);
     }
 
     /**
@@ -467,7 +458,7 @@ class FormController extends AbstractController
     {
         $arguments = $this->request->getArguments();
         if (empty($arguments['mail'])) {
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->warning('Redirect (mail empty)', $arguments);
 
             return new ForwardResponse('form');
@@ -487,7 +478,7 @@ class FormController extends AbstractController
         if ($mail !== null) {
             $formsToContent = GeneralUtility::intExplode(',', $this->settings['main']['form']);
             if (!in_array($mail->getForm()->getUid(), $formsToContent)) {
-                $logger = ObjectUtility::getLogger(__CLASS__);
+                $logger = ObjectUtility::getLogger(self::class);
                 $logger->warning('Redirect (optin)', [$formsToContent, (array)$mail]);
 
                 return new ForwardResponse('form');
@@ -520,7 +511,6 @@ class FormController extends AbstractController
      *            - enabled with TypoScript AND hash is not set OR
      *            - optin is enabled AND hash is not set (even if disabled in TS)
      *
-     * @param string $hash
      * @return bool
      */
     protected function isMailPersistActive(string $hash = ''): bool
@@ -534,8 +524,6 @@ class FormController extends AbstractController
      *            - optin is deaktivated OR
      *            - optin is active AND hash is correct
      *
-     * @param Mail $mail
-     * @param string $hash
      * @return bool
      * @throws \Exception
      */
@@ -552,7 +540,7 @@ class FormController extends AbstractController
     protected function debugVariables(): void
     {
         if (!empty($this->settings['debug']['variables'])) {
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->info('Variables', GeneralUtility::_POST());
         }
     }
@@ -582,7 +570,6 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param DataProcessorRunner $dataProcessorRunner
      * @return void
      */
     public function injectDataProcessorRunner(DataProcessorRunner $dataProcessorRunner): void
@@ -591,7 +578,6 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param PersistenceManager $persistenceManager
      * @return void
      */
     public function injectPersistenceManager(PersistenceManager $persistenceManager): void

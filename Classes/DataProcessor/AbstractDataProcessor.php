@@ -85,7 +85,6 @@ abstract class AbstractDataProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param array $configuration
      * @return DataProcessorInterface
      */
     public function setConfiguration(array $configuration): DataProcessorInterface
@@ -119,13 +118,6 @@ abstract class AbstractDataProcessor implements DataProcessorInterface
     {
     }
 
-    /**
-     * @param Mail $mail
-     * @param array $configuration
-     * @param array $settings
-     * @param string $actionMethodName
-     * @param ContentObjectRenderer $contentObject
-     */
     public function __construct(
         Mail $mail,
         array $configuration,

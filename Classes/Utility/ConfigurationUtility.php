@@ -136,7 +136,6 @@ class ConfigurationUtility
     /**
      * Get default mail from install tool settings
      *
-     * @param string $fallback
      * @return string
      */
     public static function getDefaultMailFromAddress(string $fallback = null): string
@@ -168,7 +167,6 @@ class ConfigurationUtility
     /**
      * Get path to an icon for TCA configuration
      *
-     * @param string $fileName
      * @return string
      */
     public static function getIconPath(string $fileName): string
@@ -180,8 +178,6 @@ class ConfigurationUtility
      * Check if a given validation is turned on generally
      * and if there is a given spamshield method enabled
      *
-     * @param array $settings
-     * @param string $className
      * @return bool
      */
     public static function isValidationEnabled(array $settings, string $className): bool
@@ -210,7 +206,7 @@ class ConfigurationUtility
     public static function testGdExtension(): void
     {
         if (!extension_loaded('gd')) {
-            throw new SoftwareIsMissingException('PHP extension gd not loaded.', 1514819369374);
+            throw new SoftwareIsMissingException('PHP extension gd not loaded.', 1_514_819_369_374);
         }
     }
 

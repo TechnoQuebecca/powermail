@@ -63,7 +63,6 @@ class CreateRowTagsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
      * @return string
      */
     public static function getBeginningTag(array $arguments): string
@@ -76,7 +75,6 @@ class CreateRowTagsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
      * @return string
      */
     public static function getEndingTag(array $arguments): string
@@ -89,7 +87,6 @@ class CreateRowTagsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
      * @return string
      */
     protected static function getTagName(array $arguments): string
@@ -102,7 +99,6 @@ class CreateRowTagsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
      * @return string
      */
     protected static function getAttributes(array $arguments): string
@@ -120,7 +116,6 @@ class CreateRowTagsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
      * @return bool
      */
     protected static function shouldAddBeginningTag(array $arguments): bool
@@ -130,7 +125,6 @@ class CreateRowTagsViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
      * @return bool
      */
     protected static function shouldAddEndingTag(array $arguments): bool

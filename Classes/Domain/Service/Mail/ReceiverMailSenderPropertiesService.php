@@ -26,18 +26,6 @@ class ReceiverMailSenderPropertiesService
     protected $mailRepository;
 
     /**
-     * @var Mail|null
-     */
-    protected ?Mail $mail = null;
-
-    /**
-     * TypoScript settings as plain array
-     *
-     * @var array
-     */
-    protected array $settings = [];
-
-    /**
      * TypoScript configuration for cObject parsing
      *
      * @var array
@@ -46,12 +34,9 @@ class ReceiverMailSenderPropertiesService
 
     /**
      * @param Mail $mail
-     * @param array $settings
      */
-    public function __construct(Mail $mail, array $settings)
+    public function __construct(protected ?\In2code\Powermail\Domain\Model\Mail $mail, protected array $settings)
     {
-        $this->mail = $mail;
-        $this->settings = $settings;
         $this->mailRepository = GeneralUtility::makeInstance(MailRepository::class);
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
         $this->configuration = $typoScriptService->convertPlainArrayToTypoScriptArray($this->settings);
@@ -75,7 +60,7 @@ class ReceiverMailSenderPropertiesService
         $senderEmail = $this->mailRepository->getSenderMailFromArguments($this->mail, $defaultSenderEmail);
 
         $signalArguments = [&$senderEmail, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $senderEmail;
     }
 
@@ -97,7 +82,7 @@ class ReceiverMailSenderPropertiesService
         $senderName = $this->mailRepository->getSenderNameFromArguments($this->mail, $defaultSenderName);
 
         $signalArguments = [&$senderName, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $senderName;
     }
 }

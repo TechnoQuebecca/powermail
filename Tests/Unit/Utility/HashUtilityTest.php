@@ -24,7 +24,7 @@ class HashUtilityTest extends UnitTestCase
         self::assertSame('abcdef', HashUtilityFixture::getEncryptionKeyForTesting());
 
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'] = '';
-        $this->expectExceptionCode(1514910284796);
+        $this->expectExceptionCode(1_514_910_284_796);
         HashUtilityFixture::getEncryptionKeyForTesting();
     }
 }

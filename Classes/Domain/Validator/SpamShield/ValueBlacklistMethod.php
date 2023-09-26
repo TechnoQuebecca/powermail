@@ -56,7 +56,6 @@ class ValueBlacklistMethod extends AbstractMethod
     /**
      * reduce ; and "\n" to ,
      *
-     * @param string $string
      * @return string
      */
     protected function reduceDelimiters(string $string): string
@@ -74,8 +73,6 @@ class ValueBlacklistMethod extends AbstractMethod
      *        "tst sex.seems.to.be.nice" => TRUE
      *        "email@sex.org" => TRUE
      *
-     * @param string $haystack
-     * @param string $needle
      * @return bool
      */
     protected function isStringInString(string $haystack, string $needle): bool

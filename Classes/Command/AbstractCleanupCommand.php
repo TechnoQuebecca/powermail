@@ -13,9 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 abstract class AbstractCleanupCommand extends Command
 {
     /**
-     * @param OutputInterface $output
-     * @param string $directory
-     * @param int $period
      * @return void
      */
     protected function removeFilesFromRelativeDirectory(

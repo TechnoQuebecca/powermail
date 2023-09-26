@@ -45,8 +45,8 @@ class GetFileWithPathViewHelper extends AbstractTagBasedViewHelper
         foreach ($allStorages as $thisStorage) {
             try {
                 $thisStorageBasePath = $thisStorage->getConfiguration()['basePath'];
-                if (strpos($path, $thisStorageBasePath) === 0) {
-                    $subPath = substr($path, strlen($thisStorageBasePath));
+                if (str_starts_with((string) $path, (string) $thisStorageBasePath)) {
+                    $subPath = substr((string) $path, strlen((string) $thisStorageBasePath));
                     if ($thisStorage->hasFolder($subPath)) {
                         $folder = $thisStorage->getFolder($subPath);
                         $file = $thisStorage->getFileInFolder($fileName, $folder);

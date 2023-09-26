@@ -98,7 +98,6 @@ class ReportingUtility
     /**
      * Sort multiple array descending
      *
-     * @param array $reportingArray
      * @return void
      */
     public static function sortReportingArrayDescending(array &$reportingArray): void
@@ -139,7 +138,7 @@ class ReportingUtility
         string $limitLabel
     ): void {
         foreach (array_keys($reportingArray) as $key) {
-            if (count($reportingArray[$key]) >= $limit) {
+            if ((is_countable($reportingArray[$key]) ? count($reportingArray[$key]) : 0) >= $limit) {
                 $i = $totalAmount = 0;
                 foreach ($reportingArray[$key] as $value => $amount) {
                     $i++;

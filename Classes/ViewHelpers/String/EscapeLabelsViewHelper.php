@@ -32,7 +32,7 @@ class EscapeLabelsViewHelper extends AbstractViewHelper
     {
         $string = $this->renderChildren();
         if ($this->isHtmlEnabled() === false) {
-            $string = htmlspecialchars($string);
+            $string = htmlspecialchars((string) $string);
         }
         return $string;
     }

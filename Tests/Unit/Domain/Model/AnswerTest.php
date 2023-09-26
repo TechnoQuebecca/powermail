@@ -105,8 +105,6 @@ class AnswerTest extends UnitTestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $expectedResult
      * @param int $valueType
      * @param string $datepickerSettings
      * @return void
@@ -114,7 +112,7 @@ class AnswerTest extends UnitTestCase
      * @test
      * @covers ::getValue
      */
-    public function getValueReturnMixed($value, $expectedResult, $valueType = 0, $datepickerSettings = null)
+    public function getValueReturnMixed(mixed $value, mixed $expectedResult, $valueType = 0, $datepickerSettings = null)
     {
         if ($datepickerSettings) {
             $formats = [
@@ -136,13 +134,12 @@ class AnswerTest extends UnitTestCase
     }
 
     /**
-     * @param mixed $value
      * @return void
      * @dataProvider getValueReturnVoidDataProvider
      * @test
      * @covers ::getRawValue
      */
-    public function getRawValueReturnString($value)
+    public function getRawValueReturnString(mixed $value)
     {
         $this->generalValidatorMock->_setProperty('value', $value);
         self::assertSame($value, $this->generalValidatorMock->_callRef('getRawValue'));
@@ -220,8 +217,6 @@ class AnswerTest extends UnitTestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $expectedResult
      * @param string $fieldType
      * @param string $datepickerSettings
      * @return void
@@ -229,7 +224,7 @@ class AnswerTest extends UnitTestCase
      * @test
      * @covers ::setValue()
      */
-    public function setValueReturnVoid($value, $expectedResult, $fieldType = null, $datepickerSettings = null)
+    public function setValueReturnVoid(mixed $value, mixed $expectedResult, $fieldType = null, $datepickerSettings = null)
     {
         $this->generalValidatorMock->_setProperty('valueType', 0);
         if ($fieldType || $datepickerSettings) {

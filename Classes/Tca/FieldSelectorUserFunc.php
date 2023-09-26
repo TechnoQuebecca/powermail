@@ -17,7 +17,6 @@ class FieldSelectorUserFunc
     /**
      * Create Array for Field Selector
      *
-     * @param array $params
      * @return void
      * @throws DBALException
      */
@@ -45,7 +44,6 @@ class FieldSelectorUserFunc
     /**
      * Return Form Uid from content element
      *
-     * @param int $ttContentUid
      * @return int
      */
     protected function getFormUidFromTtContentUid(int $ttContentUid): int

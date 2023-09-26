@@ -18,9 +18,9 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
  */
 class SaveToAnyTableService
 {
-    const MODE_INSERT = 'insert';
-    const MODE_UPDATE = 'update';
-    const MODE_NONE = 'none';
+    final public const MODE_INSERT = 'insert';
+    final public const MODE_UPDATE = 'update';
+    final public const MODE_NONE = 'none';
 
     /**
      * Database Table to store
@@ -72,7 +72,6 @@ class SaveToAnyTableService
     protected $devLog = false;
 
     /**
-     * @param string $table
      * @throws PropertiesMissingException
      */
     public function __construct(string $table)
@@ -154,21 +153,20 @@ class SaveToAnyTableService
     protected function checkProperties(): void
     {
         if (empty($this->getProperties())) {
-            throw new PropertiesMissingException('No properties to insert/update given', 1578607503);
+            throw new PropertiesMissingException('No properties to insert/update given', 1_578_607_503);
         }
     }
 
     /**
      * Set TableName
      *
-     * @param string $table
      * @return void
      * @throws PropertiesMissingException
      */
     public function setTable(string $table): void
     {
         if (empty($table)) {
-            throw new PropertiesMissingException('No tablename given', 1578607506);
+            throw new PropertiesMissingException('No tablename given', 1_578_607_506);
         }
         $this->removeNotAllowedSigns($table);
         $this->table = $table;
@@ -197,7 +195,6 @@ class SaveToAnyTableService
     /**
      * Get one property value
      *
-     * @param string $propertyName
      * @return string
      */
     public function getProperty(string $propertyName): string
@@ -213,8 +210,6 @@ class SaveToAnyTableService
     /**
      * Add property/value pair to array
      *
-     * @param string $propertyName
-     * @param string $value
      * @return void
      */
     public function addProperty(string $propertyName, string $value): void
@@ -224,7 +219,6 @@ class SaveToAnyTableService
     }
 
     /**
-     * @param string $mode
      * @return void
      */
     public function setMode(string $mode): void
@@ -248,7 +242,6 @@ class SaveToAnyTableService
     }
 
     /**
-     * @param string $uniqueField
      * @return void
      */
     public function setUniqueField(string $uniqueField): void
@@ -273,7 +266,6 @@ class SaveToAnyTableService
     }
 
     /**
-     * @param bool $devLog
      * @return void
      */
     public function setDevLog(bool $devLog): void
@@ -298,7 +290,6 @@ class SaveToAnyTableService
     }
 
     /**
-     * @param string $additionalWhere
      * @return void
      */
     public function setAdditionalWhere(string $additionalWhere): void
@@ -309,7 +300,6 @@ class SaveToAnyTableService
     /**
      * Remove not allowed signs
      *
-     * @param string $string
      * @return void
      */
     protected function removeNotAllowedSigns(string &$string): void
@@ -328,7 +318,7 @@ class SaveToAnyTableService
             $subject = 'SaveToAnyTable (Table: ' . $this->getTable();
             $subject .= ', Mode: ' . $this->getMode();
             $subject .= ', UniqueField: ' . $this->getUniqueField() . ')';
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->info($subject, $this->getProperties());
         }
     }
@@ -379,13 +369,12 @@ class SaveToAnyTableService
             throw new DatabaseFieldMissingException(
                 'Field ' . $this->getUniqueIdentifier() . ' in table ' . $this->getTable() . ' does not exist,' .
                 ' but it\'s needed for _ifUnique functionality',
-                1579186701
+                1_579_186_701
             );
         }
     }
 
     /**
-     * @param string $field
      * @return bool
      * @throws DBALException
      */

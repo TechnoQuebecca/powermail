@@ -11,7 +11,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class LastUpdateExtensionRepositoryViewHelper extends AbstractViewHelper
 {
-    const TABLE_NAME = 'tx_extensionmanager_domain_model_repository';
+    final public const TABLE_NAME = 'tx_extensionmanager_domain_model_repository';
 
     /**
      * Return timestamp from last updated TER

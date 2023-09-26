@@ -30,12 +30,6 @@ abstract class AbstractBreaker implements BreakerInterface
      */
     protected $flexForm = [];
 
-    /**
-     * @param Mail $mail
-     * @param array $settings
-     * @param array $flexForm
-     * @param array $configuration
-     */
     public function __construct(Mail $mail, array $settings, array $flexForm, array $configuration = [])
     {
         $this->setMail($mail);
@@ -60,7 +54,6 @@ abstract class AbstractBreaker implements BreakerInterface
     }
 
     /**
-     * @param Mail $mail
      * @return AbstractBreaker
      */
     public function setMail(Mail $mail): BreakerInterface
@@ -78,7 +71,6 @@ abstract class AbstractBreaker implements BreakerInterface
     }
 
     /**
-     * @param array $configuration
      * @return AbstractBreaker
      */
     public function setConfiguration(array $configuration): BreakerInterface
@@ -96,7 +88,6 @@ abstract class AbstractBreaker implements BreakerInterface
     }
 
     /**
-     * @param array $settings
      * @return AbstractBreaker
      */
     public function setSettings(array $settings): BreakerInterface
@@ -114,7 +105,6 @@ abstract class AbstractBreaker implements BreakerInterface
     }
 
     /**
-     * @param array $flexForm
      * @return AbstractBreaker
      */
     public function setFlexForm(array $flexForm): BreakerInterface

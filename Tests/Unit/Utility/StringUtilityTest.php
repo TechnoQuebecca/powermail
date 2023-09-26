@@ -192,15 +192,12 @@ class StringUtilityTest extends UnitTestCase
     }
 
     /**
-     * @param mixed $variable
-     * @param mixed $fallback
-     * @param mixed $expectedResult
      * @return void
      * @dataProvider conditionalVariableReturnsMixedDataProvider
      * @test
      * @covers ::conditionalVariable
      */
-    public function conditionalVariableReturnsMixed($variable, $fallback, $expectedResult)
+    public function conditionalVariableReturnsMixed(mixed $variable, mixed $fallback, mixed $expectedResult)
     {
         self::assertSame($expectedResult, StringUtility::conditionalVariable($variable, $fallback));
     }

@@ -24,7 +24,6 @@ class ConfigurationService implements SingletonInterface
     protected array $configuration = [];
 
     /**
-     * @param string $pluginName
      * @return array
      */
     public function getTypoScriptSettings(string $pluginName = 'Pi1'): array
@@ -38,7 +37,6 @@ class ConfigurationService implements SingletonInterface
     /**
      * Get configuration (formally known as $this->conf in oldschool extensions)
      *
-     * @param string $pluginName
      * @return array
      */
     public function getTypoScriptConfiguration(string $pluginName = 'Pi1'): array
@@ -50,7 +48,6 @@ class ConfigurationService implements SingletonInterface
     }
 
     /**
-     * @param string $pluginName
      * @return array
      */
     protected function getTypoScriptSettingsFromOverallConfiguration(string $pluginName): array
@@ -66,7 +63,6 @@ class ConfigurationService implements SingletonInterface
     }
 
     /**
-     * @param string $pluginName
      * @return array
      */
     protected function getTypoScriptConfigurationFromOverallConfiguration(string $pluginName): array

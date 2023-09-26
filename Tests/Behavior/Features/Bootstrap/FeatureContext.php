@@ -72,7 +72,7 @@ class FeatureContext extends MinkContext
         if ($element === null) {
             throw new ElementNotFoundException(
                 sprintf('Could not evaluate CSS selector: "%s"', $locator),
-                1579187286
+                1_579_187_286
             );
         }
 
@@ -97,7 +97,6 @@ class FeatureContext extends MinkContext
      *
      * @Given /^I switch to iframe number ([0-9]+)$/
      *
-     * @param int $arg1
      * @return void
      * @throws DriverException
      * @throws UnsupportedDriverActionException
@@ -211,7 +210,7 @@ JS;
 
         try {
             $this->getSession()->executeScript($function);
-        } catch (Exception $e) {
+        } catch (Exception) {
             throw new \Exception(__METHOD__ . ' failed');
         }
     }
@@ -231,7 +230,7 @@ JS;
         }
         $fileName = '';
         for ($i = 0; $i < $length; $i++) {
-            $key = mt_rand(0, strlen($characters) - 1);
+            $key = random_int(0, strlen($characters) - 1);
             $fileName .= $characters[$key];
         }
         return $fileName;

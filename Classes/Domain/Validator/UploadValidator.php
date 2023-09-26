@@ -35,7 +35,7 @@ class UploadValidator extends AbstractValidator
         foreach ($uploadService->getFiles() as $file) {
             if (!$this->formHasUploadFields() || !$this->basicFileCheck($file)) {
                 $file->setValid(false);
-                $this->addError('upload_error', 1580681638, ['marker' => $file->getMarker()]);
+                $this->addError('upload_error', 1_580_681_638, ['marker' => $file->getMarker()]);
                 $this->setValidState(false);
             }
             if (!$uploadService->isFileExtensionAllowed($file, $this->getAllowedFileExtensions())) {
@@ -72,7 +72,6 @@ class UploadValidator extends AbstractValidator
     /**
      * Basic check if file upload is correct
      *
-     * @param File $file
      * @return bool
      */
     protected function basicFileCheck(File $file): bool

@@ -16,10 +16,6 @@ class CountriesFromStaticInfoTablesService
     /**
      * Build array with countries
      *
-     * @param string $key
-     * @param string $value
-     * @param string $sortbyField
-     * @param string $sorting
      * @return array
      * @throws PropertyNotAccessibleException
      */

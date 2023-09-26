@@ -61,11 +61,11 @@ class CalculatingCaptchaServiceTest extends UnitTestCase
         return [
             [
                 '#444444',
-                4473924,
+                4_473_924,
             ],
             [
                 '#af584c',
-                11491404,
+                11_491_404,
             ],
         ];
     }

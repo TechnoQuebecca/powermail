@@ -105,7 +105,7 @@ class PrefillFieldViewHelper extends AbstractViewHelper
         if (!$this->isCachedForm()) {
             $this->buildValue();
         }
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$field, $mail, $default, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__, [$field, $mail, $default, $this]);
         return $this->getValue();
     }
 
@@ -130,7 +130,6 @@ class PrefillFieldViewHelper extends AbstractViewHelper
     /**
      * Get value from existing answer for edit view
      *
-     * @param string $value
      * @return string|array
      */
     protected function getFromMail(string $value)
@@ -325,7 +324,6 @@ class PrefillFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param Field $field
      * @return PrefillFieldViewHelper
      */
     public function setField(Field $field): PrefillFieldViewHelper
@@ -361,7 +359,6 @@ class PrefillFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param string $marker
      * @return PrefillFieldViewHelper
      */
     public function setMarker(string $marker): PrefillFieldViewHelper

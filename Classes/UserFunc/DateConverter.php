@@ -97,7 +97,6 @@ class DateConverter
     /**
      * Init function
      *
-     * @param array $configuration
      * @return void
      */
     protected function initialize(array $configuration): void
@@ -173,7 +172,6 @@ class DateConverter
     }
 
     /**
-     * @param \DateTime $date
      * @return void
      */
     public function setDate(\DateTime $date): void

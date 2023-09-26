@@ -91,7 +91,6 @@ class BackendUtilityTest extends UnitTestCase
 
     /**
      * @param string $property
-     * @param mixed $value
      * @dataProvider getPropertyFromBackendUserReturnsStringDataProvider
      * @return void
      * @SuppressWarnings(PHPMD.Superglobals)
@@ -99,7 +98,7 @@ class BackendUtilityTest extends UnitTestCase
      * @covers ::getPropertyFromBackendUser
      * @covers ::getBackendUserAuthentication
      */
-    public function getPropertyFromBackendUserReturnsString($property, $value)
+    public function getPropertyFromBackendUserReturnsString($property, mixed $value)
     {
         TestingHelper::setDefaultConstants();
         $user = new BackendUserAuthentication();
@@ -194,7 +193,7 @@ class BackendUtilityTest extends UnitTestCase
             ],
             'Any example III' => [
                 '',
-                1514816014062,
+                1_514_816_014_062,
             ],
         ];
     }

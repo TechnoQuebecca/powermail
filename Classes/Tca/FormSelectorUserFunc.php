@@ -109,8 +109,6 @@ class FormSelectorUserFunc
     /**
      * Get Forms from Database
      *
-     * @param int $startPid
-     * @param int $language
      * @return array
      * @throws DBALException
      */
@@ -128,8 +126,6 @@ class FormSelectorUserFunc
     }
 
     /**
-     * @param int $startPid
-     * @param int $language
      * @return string
      */
     protected function getWhereStatement(int $startPid, int $language): string
@@ -144,7 +140,6 @@ class FormSelectorUserFunc
     /**
      * Get commaseparated list of PID under a starting Page
      *
-     * @param int $startPid
      * @return string
      */
     protected function getPidListFromStartingPoint(int $startPid = 0): string
@@ -156,7 +151,6 @@ class FormSelectorUserFunc
     /**
      * Check if backend user has access to given page
      *
-     * @param int $pageIdentifier
      * @return bool
      */
     protected function hasUserAccessToPage(int $pageIdentifier): bool

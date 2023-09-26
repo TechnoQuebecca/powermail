@@ -28,7 +28,7 @@ class Utf8ToUtf16ViewHelper extends AbstractViewHelper
     public function render(): string
     {
         $string = chr(255) . chr(254);
-        $string .= mb_convert_encoding($this->renderChildren(), 'UTF-16LE', 'UTF-8');
+        $string .= mb_convert_encoding((string) $this->renderChildren(), 'UTF-16LE', 'UTF-8');
         return $string;
     }
 }

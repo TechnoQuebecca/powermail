@@ -32,7 +32,6 @@ class PlaintextService
     /**
      * Remove all invisible elements
      *
-     * @param string $content
      * @return string
      */
     protected function removeInvisibleElements(string $content): string
@@ -60,7 +59,6 @@ class PlaintextService
     /**
      * Remove linebreaks and tabs
      *
-     * @param string $content
      * @return string
      */
     protected function removeLinebreaksAndTabs(string $content): string
@@ -72,7 +70,6 @@ class PlaintextService
     /**
      * add linebreaks on some parts (</p> => </p><br />)
      *
-     * @param string $content
      * @return string
      */
     protected function addLineBreaks(string $content): string
@@ -100,7 +97,6 @@ class PlaintextService
     /**
      * Add a space character to a table cell
      *
-     * @param string $content
      * @return string
      */
     protected function addSpaceToTableCells(string $content): string
@@ -111,7 +107,6 @@ class PlaintextService
     /**
      * Remove all tags but keep br and address
      *
-     * @param string $content
      * @return string
      */
     protected function removeTags(string $content): string
@@ -133,8 +128,6 @@ class PlaintextService
     protected function extractLinkForPlainTextContent(string $content): string
     {
         $pattern = '/<a[^>]+href\s*=\s*["\']([^"\']+)["\'][^>]*>(.*?)<\/a>/misu';
-        return preg_replace_callback($pattern, function ($matches) {
-            return $matches[2] . ' [' . htmlspecialchars_decode($matches[1]) . ']';
-        }, $content);
+        return preg_replace_callback($pattern, fn($matches) => $matches[2] . ' [' . htmlspecialchars_decode((string) $matches[1]) . ']', $content);
     }
 }

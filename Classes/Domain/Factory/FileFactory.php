@@ -24,25 +24,14 @@ use TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException;
  */
 class FileFactory
 {
-    /**
-     * @var array
-     */
-    protected array $settings = [];
-
-    /**
-     * @param array $settings
-     */
-    public function __construct(array $settings)
+    public function __construct(protected array $settings)
     {
-        $this->settings = $settings;
     }
 
     /**
      * Get instance of File from Files Array
      *
      * @param array $filesArray normally $_FILES['tx_powermail_pi1']
-     * @param string $marker
-     * @param int $key
      * @return File|null
      * @throws Exception
      * @throws ExtensionConfigurationExtensionNotConfiguredException
@@ -66,9 +55,6 @@ class FileFactory
     /**
      * Get instance of File from arguments
      *
-     * @param string $marker
-     * @param string $value
-     * @param array $arguments
      * @return File|null
      * @throws Exception
      * @throws ExtensionConfigurationExtensionNotConfiguredException
@@ -89,8 +75,6 @@ class FileFactory
     /**
      * Get instance of File from existing answer
      *
-     * @param string $fileName
-     * @param Answer $answer
      * @return File
      * @throws Exception
      * @throws ExtensionConfigurationExtensionNotConfiguredException
@@ -108,12 +92,6 @@ class FileFactory
      * This subfunction is used to create a file instance. E.g. when a file was just uploaded or when a confirmation
      * page is active, when a file was already uploaded in the step before.
      *
-     * @param string $marker
-     * @param string $originalName
-     * @param int $size
-     * @param string $type
-     * @param string $temporaryName
-     * @param bool $uploaded
      * @param ?Form $form
      * @return File
      * @throws Exception

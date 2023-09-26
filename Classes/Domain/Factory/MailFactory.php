@@ -23,8 +23,6 @@ use TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException;
 class MailFactory
 {
     /**
-     * @param Mail $mail
-     * @param array $settings
      * @return void
      * @throws Exception
      * @throws ExtensionConfigurationExtensionNotConfiguredException
@@ -61,7 +59,6 @@ class MailFactory
     }
 
     /**
-     * @param Mail $mail
      * @return void
      */
     protected function setFeuser(Mail $mail): void
@@ -77,7 +74,6 @@ class MailFactory
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
@@ -90,8 +86,6 @@ class MailFactory
     }
 
     /**
-     * @param Mail $mail
-     * @param array $settings
      * @return void
      */
     protected function setHidden(Mail $mail, array $settings): void
@@ -102,8 +96,6 @@ class MailFactory
     }
 
     /**
-     * @param Mail $mail
-     * @param array $settings
      * @return void
      */
     protected function setAnswersPid(Mail $mail, array $settings): void

@@ -55,7 +55,7 @@ class PowermailLanguageUpdateWizard implements UpgradeWizardInterface
             $connection->executeQuery('update ' . Mail::TABLE_NAME . ' set sys_language_uid=-1;');
             $connection = DatabaseUtility::getConnectionForTable(Answer::TABLE_NAME);
             $connection->executeQuery('update ' . Answer::TABLE_NAME . ' set sys_language_uid=-1;');
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
             return false;
         }
         return true;

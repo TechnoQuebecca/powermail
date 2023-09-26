@@ -113,8 +113,6 @@ class ShowFormNoteEditForm extends AbstractFormElement
     /**
      * Get form uid of a localized form (only if needed)
      *
-     * @param int $uid
-     * @param int $sysLanguageUid
      * @return int
      */
     protected function getLocalizedFormUid(int $uid, int $sysLanguageUid): int
@@ -131,7 +129,6 @@ class ShowFormNoteEditForm extends AbstractFormElement
     /**
      * Get localized label
      *
-     * @param string $key
      * @return string
      */
     protected function getLabel(string $key): string
@@ -188,7 +185,6 @@ class ShowFormNoteEditForm extends AbstractFormElement
      * If there is already an existing content element in the same column, $params[row][pid] is filled with
      * (tt_content.uid * -1). This information helps to find the correct pageIdentifier.
      *
-     * @param int $pageIdentifier
      * @return int
      */
     protected function getPageIdentifierFromExistingContentElements(int $pageIdentifier): int

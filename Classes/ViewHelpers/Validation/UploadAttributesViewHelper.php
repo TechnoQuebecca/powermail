@@ -64,7 +64,6 @@ class UploadAttributesViewHelper extends AbstractValidationViewHelper
      *      before: jpg,png,gif
      *      after: .jpg,.png,.gif
      *
-     * @param string $extensionList
      * @return string
      */
     protected function getDottedListOfExtensions(string $extensionList): string

@@ -70,7 +70,6 @@ class CaptchaViewHelper extends AbstractTagBasedViewHelper
     }
 
     /**
-     * @param Exception $exception
      * @return string
      */
     protected function getErrorMessage(Exception $exception): string
@@ -83,7 +82,6 @@ class CaptchaViewHelper extends AbstractTagBasedViewHelper
     }
 
     /**
-     * @param Field $field
      * @return string image URL
      * @throws ExceptionCore
      */
@@ -95,7 +93,7 @@ class CaptchaViewHelper extends AbstractTagBasedViewHelper
                 $captchaVersion = ExtensionManagementUtility::getExtensionVersion('captcha');
                 $image = BasicFileUtility::getRelativeFolder(ExtensionManagementUtility::extPath('captcha'))
                     . 'captcha/captcha.php';
-                if (VersionNumberUtility::convertVersionNumberToInteger($captchaVersion) >= 2000000) {
+                if (VersionNumberUtility::convertVersionNumberToInteger($captchaVersion) >= 2_000_000) {
                     $imageTag = Utility::makeCaptcha($field->getUid());
                     return StringUtility::getSrcFromImageTag($imageTag);
                 }

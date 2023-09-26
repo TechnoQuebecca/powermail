@@ -56,7 +56,7 @@ class PowermailRelationUpdateWizard implements UpgradeWizardInterface
             $connection->executeQuery('update ' . Field::TABLE_NAME . ' set page=pages;');
             $connection = DatabaseUtility::getConnectionForTable(Page::TABLE_NAME);
             $connection->executeQuery('update ' . Page::TABLE_NAME . ' set form=forms;');
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
             return false;
         }
         return true;
@@ -102,13 +102,13 @@ class PowermailRelationUpdateWizard implements UpgradeWizardInterface
         if (DatabaseUtility::isFieldExistingInTable('page', Field::TABLE_NAME) === false) {
             throw new DatabaseFieldMissingException(
                 'Field tx_powermail_domain_model_field.page is missing. Did you forget a database compare?',
-                1580560323
+                1_580_560_323
             );
         }
         if (DatabaseUtility::isFieldExistingInTable('form', Page::TABLE_NAME) === false) {
             throw new DatabaseFieldMissingException(
                 'Field tx_powermail_domain_model_page.form is missing. Did you forget a database compare?',
-                1580560354
+                1_580_560_354
             );
         }
         return DatabaseUtility::isFieldFilled('page', Field::TABLE_NAME) === false &&

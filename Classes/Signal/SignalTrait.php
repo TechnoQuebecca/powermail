@@ -22,9 +22,6 @@ trait SignalTrait
     /**
      * Instance a new signalSlotDispatcher and offer a signal
      *
-     * @param string $signalClassName
-     * @param string $signalName
-     * @param array $arguments
      * @return void
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException

@@ -29,30 +29,13 @@ class SendDisclaimedMailPreflight
      */
     protected MailRepository $mailRepository;
 
-    /**
-     * @var array
-     */
-    protected array $settings = [];
-
-    /**
-     * @var array
-     */
-    protected array $conf = [];
-
-    /**
-     * @param array $settings
-     * @param array $conf
-     */
-    public function __construct(array $settings, array $conf)
+    public function __construct(protected array $settings, protected array $conf)
     {
-        $this->settings = $settings;
-        $this->conf = $conf;
         $this->sendMailService = GeneralUtility::makeInstance(SendMailService::class);
         $this->mailRepository = GeneralUtility::makeInstance(MailRepository::class);
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @throws InvalidConfigurationTypeException
      * @throws InvalidExtensionNameException

@@ -216,7 +216,6 @@ class FormControllerTest extends UnitTestCase
     }
 
     /**
-     * @param array $settings
      * @param int $formUid
      * @param bool $forward
      * @return void

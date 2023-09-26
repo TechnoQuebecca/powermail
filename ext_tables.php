@@ -54,7 +54,7 @@ call_user_func(
         /**
          * Garbage Collector
          */
-        $tgct = 'TYPO3\CMS\Scheduler\Task\TableGarbageCollectionTask';
+        $tgct = \TYPO3\CMS\Scheduler\Task\TableGarbageCollectionTask::class;
         $tables = [
             \In2code\Powermail\Domain\Model\Mail::TABLE_NAME,
             \In2code\Powermail\Domain\Model\Answer::TABLE_NAME

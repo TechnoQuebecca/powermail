@@ -18,27 +18,6 @@ class File
     use SignalTrait;
 
     /**
-     * Field marker name
-     *
-     * @var string
-     */
-    protected string $marker = '';
-
-    /**
-     * Original name
-     *
-     * @var string
-     */
-    protected string $originalName = '';
-
-    /**
-     * Temporary uploaded name
-     *
-     * @var string|null
-     */
-    protected ?string $temporaryName = null;
-
-    /**
      * New, cleaned and unique filename
      *
      * @var string
@@ -95,15 +74,10 @@ class File
     protected ?Field $field = null;
 
     /**
-     * @param string $marker
-     * @param string $originalName
      * @param string $temporaryName
      */
-    public function __construct(string $marker, string $originalName, string $temporaryName)
+    public function __construct(protected string $marker, protected string $originalName, protected ?string $temporaryName)
     {
-        $this->marker = $marker;
-        $this->originalName = $originalName;
-        $this->temporaryName = $temporaryName;
     }
 
     /**
@@ -115,7 +89,6 @@ class File
     }
 
     /**
-     * @param string $marker
      * @return File
      */
     public function setMarker(string $marker): File
@@ -133,7 +106,6 @@ class File
     }
 
     /**
-     * @param string $originalName
      * @return File
      * @noinspection PhpUnused
      */
@@ -152,7 +124,6 @@ class File
     }
 
     /**
-     * @param string $temporaryName
      * @return File
      * @noinspection PhpUnused
      */
@@ -171,7 +142,6 @@ class File
     }
 
     /**
-     * @param string $newName
      * @return File
      */
     public function setNewName(string $newName): File
@@ -183,7 +153,6 @@ class File
     /**
      * Set a new name and set renamed to true
      *
-     * @param string $newName
      * @return File
      */
     public function renameName(string $newName): File
@@ -202,7 +171,6 @@ class File
     }
 
     /**
-     * @param bool $valid
      * @return File
      */
     public function setValid(bool $valid): File
@@ -220,7 +188,6 @@ class File
     }
 
     /**
-     * @param string $type
      * @return File
      */
     public function setType(string $type): File
@@ -238,7 +205,6 @@ class File
     }
 
     /**
-     * @param int $size
      * @return File
      */
     public function setSize(int $size): File
@@ -256,7 +222,6 @@ class File
     }
 
     /**
-     * @param string $uploadFolder
      * @return File
      */
     public function setUploadFolder(string $uploadFolder): File
@@ -274,7 +239,6 @@ class File
     }
 
     /**
-     * @param bool $uploaded
      * @return File
      */
     public function setUploaded(bool $uploaded): File
@@ -292,7 +256,6 @@ class File
     }
 
     /**
-     * @param bool $renamed
      * @return File
      */
     public function setRenamed(bool $renamed): File
@@ -310,7 +273,6 @@ class File
     }
 
     /**
-     * @param Field $field
      * @return File
      */
     public function setField(Field $field): File
@@ -341,7 +303,6 @@ class File
     }
 
     /**
-     * @param bool $absolute
      * @return string
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -353,7 +314,7 @@ class File
         if ($absolute === true) {
             $pathAndFilename = GeneralUtility::getFileAbsFileName($pathAndFilename);
         }
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$pathAndFilename, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__, [$pathAndFilename, $this]);
         return $pathAndFilename;
     }
 }

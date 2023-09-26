@@ -13,10 +13,9 @@ class StringUtility
     /**
      * Check if String/Array is filled
      *
-     * @param mixed $value
      * @return bool
      */
-    public static function isNotEmpty($value): bool
+    public static function isNotEmpty(mixed $value): bool
     {
         // bool
         if (is_bool($value)) {
@@ -41,8 +40,6 @@ class StringUtility
     /**
      * create a random string
      *
-     * @param int $length
-     * @param bool $lowerAndUpperCase
      * @return string
      */
     public static function getRandomString(int $length = 32, bool $lowerAndUpperCase = true): string
@@ -53,7 +50,7 @@ class StringUtility
         }
         $fileName = '';
         for ($i = 0; $i < $length; $i++) {
-            $key = mt_rand(0, strlen($characters) - 1);
+            $key = random_int(0, strlen($characters) - 1);
             $fileName .= $characters[$key];
         }
         return $fileName;
@@ -64,11 +61,9 @@ class StringUtility
      * if main variable is empty to save unnecessary
      * long if statements
      *
-     * @param mixed $variable
-     * @param mixed $fallback
      * @return mixed
      */
-    public static function conditionalVariable($variable, $fallback)
+    public static function conditionalVariable(mixed $variable, mixed $fallback)
     {
         if (empty($variable)) {
             return $fallback;
@@ -79,8 +74,6 @@ class StringUtility
     /**
      * Check if string starts with another string
      *
-     * @param string $haystack
-     * @param string $needle
      * @return bool
      */
     public static function startsWith(string $haystack, string $needle): bool
@@ -91,8 +84,6 @@ class StringUtility
     /**
      * Check if string ends with another string
      *
-     * @param string $haystack
-     * @param string $needle
      * @return bool
      */
     public static function endsWith(string $haystack, string $needle): bool
@@ -108,7 +99,7 @@ class StringUtility
      */
     public static function removeLastDot(string $string): string
     {
-        if (substr($string, -1) === '.') {
+        if (str_ends_with($string, '.')) {
             $string = substr($string, 0, -1);
         }
         return $string;
@@ -117,7 +108,6 @@ class StringUtility
     /**
      * Function br2nl is the opposite of nl2br
      *
-     * @param string $content
      * @return string
      */
     public static function br2nl(string $content): string
@@ -134,7 +124,6 @@ class StringUtility
     /**
      * Count length of a string and respect umlauts and breaks as just one character
      *
-     * @param string $string
      * @return int
      */
     public static function getStringLength(string $string): int
@@ -149,8 +138,6 @@ class StringUtility
      *      Only allowed characters are a-z, A-Z, 0-9, -, . others will be substituted
      *      In addition string will be changed to lowercase
      *
-     * @param string $string
-     * @param string $replace
      * @return string
      */
     public static function cleanString(string $string, string $replace = '_'): string
@@ -163,7 +150,6 @@ class StringUtility
     /**
      * Forces an integer list
      *
-     * @param string $list
      * @return string
      */
     public static function integerList(string $list): string
@@ -175,7 +161,6 @@ class StringUtility
      * Get src from image tag
      *      <img src="abc" class="" /> => abc
      *
-     * @param string $tag
      * @return string
      */
     public static function getSrcFromImageTag(string $tag): string
@@ -189,7 +174,6 @@ class StringUtility
      *        folder1/folder2 => folder1/folder2/
      *        folder1/folder2/ => folder1/folder2/
      *
-     * @param string $string
      * @return string
      */
     public static function addTrailingSlash(string $string): string

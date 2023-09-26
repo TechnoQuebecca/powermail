@@ -48,7 +48,7 @@ abstract class AbstractValidator extends ExtbaseAbstractValidator implements Val
     public function setErrorAndMessage(Field $field, string $label): void
     {
         $this->setValidState(false);
-        $this->addError($label, 1580681677, ['marker' => $field->getMarker()]);
+        $this->addError($label, 1_580_681_677, ['marker' => $field->getMarker()]);
     }
 
     /**
@@ -135,7 +135,6 @@ abstract class AbstractValidator extends ExtbaseAbstractValidator implements Val
      */
     public function __construct(array $options = [])
     {
-        parent::__construct($options);
         $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
         $configurationService = GeneralUtility::makeInstance(ConfigurationService::class);
 

@@ -117,7 +117,7 @@ class PrefillMultiFieldViewHelper extends AbstractViewHelper
         if (!$this->isCachedForm()) {
             $this->buildSelectedValue();
         }
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$field, $mail, $cycle, $default, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__, [$field, $mail, $cycle, $default, $this]);
         return $this->isSelected();
     }
 
@@ -436,7 +436,6 @@ class PrefillMultiFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param bool $selected
      * @return PrefillMultiFieldViewHelper
      */
     public function setSelected(bool $selected): PrefillMultiFieldViewHelper
@@ -454,7 +453,6 @@ class PrefillMultiFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param Field $field
      * @return PrefillMultiFieldViewHelper
      */
     public function setField(Field $field): PrefillMultiFieldViewHelper
@@ -490,7 +488,6 @@ class PrefillMultiFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param string $marker
      * @return PrefillMultiFieldViewHelper
      */
     public function setMarker(string $marker): PrefillMultiFieldViewHelper
@@ -500,7 +497,6 @@ class PrefillMultiFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $options
      * @return PrefillMultiFieldViewHelper
      */
     public function setOptions(array $options): PrefillMultiFieldViewHelper
@@ -510,7 +506,6 @@ class PrefillMultiFieldViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param int $index
      * @return PrefillMultiFieldViewHelper
      */
     public function setIndex(int $index): PrefillMultiFieldViewHelper

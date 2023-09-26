@@ -61,7 +61,6 @@ class ObjectUtility
     }
 
     /**
-     * @param string $className
      * @return Logger
      */
     public static function getLogger(string $className): Logger

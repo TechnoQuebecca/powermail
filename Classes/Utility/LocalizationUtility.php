@@ -14,8 +14,6 @@ class LocalizationUtility
      * Translate function with predefined extensionName
      * Could also be used together with unit tests
      *
-     * @param string $key
-     * @param string $extensionName
      * @param array|null $arguments
      * @return string
      */

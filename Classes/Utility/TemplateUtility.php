@@ -88,9 +88,6 @@ class TemplateUtility
     /**
      * Get a default Standalone view
      *
-     * @param string $extensionName
-     * @param string $pluginName
-     * @param string $format
      * @return StandaloneView
      * @throws InvalidConfigurationTypeException
      */
@@ -112,9 +109,6 @@ class TemplateUtility
     /**
      * This functions renders the powermail_all Template (e.g. useage in Mails)
      *
-     * @param Mail $mail
-     * @param string $section
-     * @param array $settings
      * @param ?string $type
      * @return string
      * @throws InvalidConfigurationTypeException

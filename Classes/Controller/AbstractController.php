@@ -99,7 +99,6 @@ abstract class AbstractController extends ActionController
     /**
      * Make $this->settings writable when extending the controller with signals
      *
-     * @param array $settings
      * @return void
      */
     public function setSettings(array $settings): void
@@ -181,7 +180,7 @@ abstract class AbstractController extends ActionController
                 if (empty($value)) {
                     $value = '';
                 } else {
-                    $value = json_encode($value);
+                    $value = json_encode($value, JSON_THROW_ON_ERROR);
                 }
             }
             $newArguments['mail']['answers'][$iteration] = [
@@ -222,7 +221,6 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * @param FormRepository $formRepository
      * @return void
      * @noinspection PhpUnused
      */
@@ -232,7 +230,6 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * @param FieldRepository $fieldRepository
      * @return void
      * @noinspection PhpUnused
      */
@@ -242,7 +239,6 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * @param MailRepository $mailRepository
      * @return void
      * @noinspection PhpUnused
      */
@@ -252,7 +248,6 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * @param UploadService $uploadService
      * @return void
      * @noinspection PhpUnused
      */

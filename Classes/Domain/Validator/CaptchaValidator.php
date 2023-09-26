@@ -68,7 +68,7 @@ class CaptchaValidator extends AbstractValidator
 
             // if no captcha arguments given (maybe deleted from DOM)
             if (!$this->hasCaptchaArgument()) {
-                $this->addError('captcha', 1580681526);
+                $this->addError('captcha', 1_580_681_526);
                 $this->setValidState(false);
             }
         }
@@ -79,27 +79,19 @@ class CaptchaValidator extends AbstractValidator
     /**
      * Check if given string is correct
      *
-     * @param string $value
-     * @param Field $field
      * @return bool
      * @throws ExceptionCore
      */
     protected function validCodePreflight(string $value, Field $field): bool
     {
-        switch (TypoScriptUtility::getCaptchaExtensionFromSettings($this->settings)) {
-            case 'captcha':
-                $result = $this->validateCaptcha($value, $field);
-                break;
-
-            default:
-                $result = $this->validatePowermailCaptcha($value, $field);
-        }
+        $result = match (TypoScriptUtility::getCaptchaExtensionFromSettings($this->settings)) {
+            'captcha' => $this->validateCaptcha($value, $field),
+            default => $this->validatePowermailCaptcha($value, $field),
+        };
         return $result;
     }
 
     /**
-     * @param string $value
-     * @param Field $field
      * @return bool
      */
     protected function validatePowermailCaptcha(string $value, Field $field): bool
@@ -109,22 +101,19 @@ class CaptchaValidator extends AbstractValidator
     }
 
     /**
-     * @param string $value
-     * @param Field $field
      * @return bool
      * @throws ExceptionCore
      */
     protected function validateCaptcha(string $value, Field $field): bool
     {
         $captchaVersion = ExtensionManagementUtility::getExtensionVersion('captcha');
-        if (VersionNumberUtility::convertVersionNumberToInteger($captchaVersion) >= 2000000) {
+        if (VersionNumberUtility::convertVersionNumberToInteger($captchaVersion) >= 2_000_000) {
             return Utility::checkCaptcha($value, $field->getUid());
         }
         return $this->validateCaptchaOld($value);
     }
 
     /**
-     * @param string $value
      * @return bool
      * @SuppressWarnings(PHPMD.Superglobals)
      */
@@ -141,7 +130,6 @@ class CaptchaValidator extends AbstractValidator
     /**
      * Checks if given form has a captcha
      *
-     * @param Form $form
      * @return bool
      */
     protected function formHasCaptcha(Form $form): bool
@@ -160,7 +148,6 @@ class CaptchaValidator extends AbstractValidator
     }
 
     /**
-     * @param bool $clearSession
      * @return void
      */
     public function setClearSession(bool $clearSession): void
@@ -177,7 +164,6 @@ class CaptchaValidator extends AbstractValidator
     }
 
     /**
-     * @param bool $captchaArgument
      * @return void
      */
     public function setCaptchaArgument(bool $captchaArgument): void

@@ -24,7 +24,6 @@ class ArrayUtility
     /**
      * Check if String is JSON Array
      *
-     * @param string $string
      * @return bool
      */
     public static function isJsonArray(string $string): bool
@@ -32,7 +31,7 @@ class ArrayUtility
         if (!is_string($string)) {
             return false;
         }
-        return is_array(json_decode($string, true));
+        return is_array(json_decode($string, true, 512, JSON_THROW_ON_ERROR));
     }
 
     /**

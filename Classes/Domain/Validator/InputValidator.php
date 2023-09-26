@@ -68,8 +68,6 @@ class InputValidator extends StringValidator
     /**
      * Get Answer from given field out of Mail object
      *
-     * @param Field $field
-     * @param Mail $mail
      * @return string|array
      */
     protected function getAnswerFromField(Field $field, Mail $mail)
@@ -86,11 +84,9 @@ class InputValidator extends StringValidator
     /**
      * Validate a single field for mandatory validation
      *
-     * @param Field $field
-     * @param mixed $value
      * @return void
      */
-    protected function isValidFieldInMandatoryValidation(Field $field, $value): void
+    protected function isValidFieldInMandatoryValidation(Field $field, mixed $value): void
     {
         // Mandatory Check
         if (in_array($field->getType(), $this->mandatoryValidationFieldTypes) && $field->isMandatory()) {
@@ -103,11 +99,9 @@ class InputValidator extends StringValidator
     /**
      * Validate a single field for any string validation
      *
-     * @param Field $field
-     * @param mixed $value
      * @return void
      */
-    protected function isValidFieldInStringValidation(Field $field, $value): void
+    protected function isValidFieldInStringValidation(Field $field, mixed $value): void
     {
         if (!empty($value) && in_array($field->getType(), $this->stringValidationFieldTypes)) {
             switch ($field->getValidation()) {

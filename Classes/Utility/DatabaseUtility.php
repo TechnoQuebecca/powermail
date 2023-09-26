@@ -16,8 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class DatabaseUtility
 {
     /**
-     * @param string $tableName
-     * @param bool $removeRestrictions
      * @return QueryBuilder
      */
     public static function getQueryBuilderForTable(string $tableName, bool $removeRestrictions = false): QueryBuilder
@@ -30,7 +28,6 @@ class DatabaseUtility
     }
 
     /**
-     * @param string $tableName
      * @return Connection
      */
     public static function getConnectionForTable(string $tableName): Connection
@@ -39,7 +36,6 @@ class DatabaseUtility
     }
 
     /**
-     * @param string $tableName
      * @return bool
      * @throws DBALException
      */
@@ -58,8 +54,6 @@ class DatabaseUtility
     }
 
     /**
-     * @param string $fieldName
-     * @param string $tableName
      * @return bool
      * @throws DBALException
      */
@@ -80,8 +74,6 @@ class DatabaseUtility
     /**
      * Check if there are any values in a table field (don't care about deleted property)
      *
-     * @param string $fieldName
-     * @param string $tableName
      * @return bool
      * @throws DBALException
      */

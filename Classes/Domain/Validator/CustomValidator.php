@@ -27,7 +27,7 @@ class CustomValidator extends StringValidator
      */
     public function isValid($mail)
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$mail, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__, [$mail, $this]);
         return $this->isValidState();
     }
 }

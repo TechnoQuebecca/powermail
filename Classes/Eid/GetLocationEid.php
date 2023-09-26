@@ -62,10 +62,10 @@ class GetLocationEid
             $response = new Response();
             $response->getBody()->write($this->content);
             return $response;
-        } catch (InvalidArgumentException $e) {
+        } catch (InvalidArgumentException) {
             // add a 410 "gone" if invalid parameters given
             return (new Response())->withStatus(410);
-        } catch (Exception $e) {
+        } catch (Exception) {
             return (new Response())->withStatus(404);
         }
     }
@@ -74,8 +74,6 @@ class GetLocationEid
      * Get Address from geo coordinates
      *      with service from nominatim.openstreetmap.org (since google needs an API key)
      *
-     * @param float $lat
-     * @param float $lng
      * @return array all location infos
      *        ['route'] = 'Kunstmuehlstr.';
      *        ['locality'] = 'Rosenheim';
@@ -90,7 +88,7 @@ class GetLocationEid
         try {
             $json = GeneralUtility::getUrl($url);
             if ($json !== false) {
-                $data = json_decode($json, true);
+                $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
                 if (!empty($data['address'])) {
                     $locality = '';
                     if (isset($data['address']['village'])) {
@@ -107,7 +105,7 @@ class GetLocationEid
                     ];
                 }
             }
-        } catch (Throwable $e) {
+        } catch (Throwable) {
         }
         return $result;
     }

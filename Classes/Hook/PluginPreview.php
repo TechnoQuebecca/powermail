@@ -163,8 +163,6 @@ class PluginPreview implements PageLayoutViewDrawItemHookInterface
     /**
      * Get form uid of a localized form
      *
-     * @param int $uid
-     * @param int $sysLanguageUid
      * @return int
      */
     protected function getLocalizedFormUid(int $uid, int $sysLanguageUid): int
@@ -209,7 +207,6 @@ class PluginPreview implements PageLayoutViewDrawItemHookInterface
     }
 
     /**
-     * @param array $row
      * @return void
      */
     protected function initialize(array $row): void

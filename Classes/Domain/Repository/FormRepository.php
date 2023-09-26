@@ -38,7 +38,6 @@ class FormRepository extends AbstractRepository
     /**
      * Returns form with captcha from given UID
      *
-     * @param Form $form
      * @return QueryResultInterface
      */
     public function hasCaptcha(Form $form): QueryResultInterface
@@ -56,7 +55,6 @@ class FormRepository extends AbstractRepository
     /**
      * Returns form with password from given UID
      *
-     * @param Form $form
      * @return QueryResultInterface
      */
     public function hasPassword(Form $form): QueryResultInterface
@@ -199,7 +197,6 @@ class FormRepository extends AbstractRepository
     /**
      * Get Field Uid List from given Form Uid
      *
-     * @param int $formUid
      * @return array e.g. array(123, 234, 567)
      */
     public function getFieldUidsFromForm(int $formUid): array

@@ -103,7 +103,7 @@ class SendParametersFinisher extends AbstractFinisher implements FinisherInterfa
     protected function writeToDevelopmentLog(): void
     {
         if ($this->configuration['debug']) {
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->info('SendPost Values', $this->getCurlSettings());
         }
     }

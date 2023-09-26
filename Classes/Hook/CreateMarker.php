@@ -125,7 +125,6 @@ class CreateMarker
     /**
      * Initially set marker names in fields
      *
-     * @param array $markers
      * @return void
      */
     protected function setMarkerForFields(array $markers): void
@@ -143,7 +142,6 @@ class CreateMarker
     /**
      * Rename marker name if it's empty or duplicated
      *
-     * @param array $markers
      * @return void
      */
     protected function renameMarker(array $markers): void
@@ -169,7 +167,6 @@ class CreateMarker
     /**
      * Check if persisted fields should have a different marker name and rename it if it's necessary
      *
-     * @param array $markers
      * @return void
      * @throws DBALException
      */
@@ -189,7 +186,6 @@ class CreateMarker
     }
 
     /**
-     * @param string $marker
      * @return void
      */
     protected function setMarkerProperty(string $marker): void
@@ -318,7 +314,6 @@ class CreateMarker
     /**
      * Get From Uid from related Page
      *
-     * @param int $pageUid
      * @return int
      * @throws DBALException
      */
@@ -338,7 +333,6 @@ class CreateMarker
     /**
      * Add field to array (and may overwrite existing field from array)
      *
-     * @param Field $field
      * @return void
      * @throws Exception
      */
@@ -352,7 +346,6 @@ class CreateMarker
     /**
      * Check if hook should do magic or not
      *
-     * @param string $table
      * @return bool
      */
     protected function shouldProcess(string $table): bool
@@ -371,7 +364,6 @@ class CreateMarker
     }
 
     /**
-     * @param array $markers
      * @return bool
      */
     protected function shouldRenameMarker(array $markers): bool

@@ -12,9 +12,6 @@ use In2code\Powermail\Exception\ConfigurationIsMissingException;
 class HashUtility
 {
     /**
-     * @param string $hash
-     * @param Mail $mail
-     * @param string $role
      * @return bool
      * @throws \Exception
      */
@@ -25,8 +22,6 @@ class HashUtility
     }
 
     /**
-     * @param Mail $mail
-     * @param string $role
      * @return string
      * @throws \Exception
      */
@@ -38,8 +33,6 @@ class HashUtility
     /**
      * Create Hash from Mail properties and TYPO3 Encryption Key
      *
-     * @param Mail $mail
-     * @param string $role
      * @return string
      * @throws \Exception
      */
@@ -50,7 +43,6 @@ class HashUtility
     }
 
     /**
-     * @param string $string
      * @return string
      */
     private static function createHashFromString(string $string): string
@@ -71,7 +63,7 @@ class HashUtility
         if (empty($confVars['SYS']['encryptionKey'])) {
             throw new ConfigurationIsMissingException(
                 'No encryption key found in this TYPO3 installation',
-                1514910284796
+                1_514_910_284_796
             );
         }
         return $confVars['SYS']['encryptionKey'];

@@ -15,7 +15,6 @@ use In2code\Powermail\Utility\DatabaseUtility;
 class PageRepository extends AbstractRepository
 {
     /**
-     * @param int $uid
      * @return string
      */
     public function getPageNameFromUid(int $uid): string
@@ -31,7 +30,6 @@ class PageRepository extends AbstractRepository
     }
 
     /**
-     * @param int $uid
      * @return array
      * @throws Exception
      * @throws ExceptionDbal
@@ -45,7 +43,6 @@ class PageRepository extends AbstractRepository
     /**
      * Get all pages with tt_content with a Powermail Plugin
      *
-     * @param Form $form
      * @return array
      */
     public function getPagesWithContentRelatedToForm(Form $form): array
@@ -119,7 +116,6 @@ class PageRepository extends AbstractRepository
     /**
      * Get parent form uid form given page uid
      *
-     * @param int $pageUid
      * @return int
      */
     protected function getFormUidFromPageUid(int $pageUid): int
@@ -135,8 +131,6 @@ class PageRepository extends AbstractRepository
     }
 
     /**
-     * @param int $formUid
-     * @param int $sysLanguageUid
      * @return int
      */
     protected function getLocalizedFormUidFromFormUid(int $formUid, int $sysLanguageUid): int

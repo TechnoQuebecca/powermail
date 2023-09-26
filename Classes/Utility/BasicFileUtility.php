@@ -31,7 +31,6 @@ class BasicFileUtility
     /**
      * Get path from path and filename
      *
-     * @param string $pathAndFilename
      * @return string
      */
     public static function getPathFromPathAndFilename(string $pathAndFilename): string
@@ -41,7 +40,6 @@ class BasicFileUtility
     }
 
     /**
-     * @param string $path
      * @return void
      * @throws FileCannotBeCreatedException
      */
@@ -50,10 +48,10 @@ class BasicFileUtility
         if (is_dir($path) === false) {
             try {
                 GeneralUtility::mkdir_deep($path);
-            } catch (\Exception $exception) {
+            } catch (\Exception) {
                 throw new FileCannotBeCreatedException(
                     'Folder ' . self::getRelativeFolder($path) . ' could not be created',
-                    1514817474234
+                    1_514_817_474_234
                 );
             }
         }
@@ -62,8 +60,6 @@ class BasicFileUtility
     /**
      * Prepend content to the beginning of a file
      *
-     * @param string $pathAndFile
-     * @param string $content
      * @return void
      */
     public static function prependContentToFile(string $pathAndFile, string $content): void
@@ -80,7 +76,6 @@ class BasicFileUtility
     /**
      * Get relative path from absolute path, but don't touch if it's already a relative path
      *
-     * @param string $path
      * @return string
      */
     public static function getRelativeFolder(string $path): string

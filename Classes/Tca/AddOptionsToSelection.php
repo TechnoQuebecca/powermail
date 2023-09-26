@@ -28,7 +28,6 @@ class AddOptionsToSelection
 
     /**
      * @param string $type "type", "validation", "feUserProperty"
-     * @param array $params
      * @return void
      * @SuppressWarnings(PHPMD.Superglobals)
      */
@@ -45,7 +44,6 @@ class AddOptionsToSelection
      *            tx_powermail.flexForm.type.addFieldOptions.newfield =
      *                LLL:fileadmin/locallang.xlf:key
      *
-     * @param array $params
      * @return void
      */
     public function addOptionsForType(array &$params): void
@@ -61,7 +59,6 @@ class AddOptionsToSelection
      *            tx_powermail.flexForm.validation.addFieldOptions.100 =
      *                LLL:fileadmin/locallang.xlf:key
      *
-     * @param array $params
      * @return void
      */
     public function addOptionsForValidation(array &$params): void
@@ -77,7 +74,6 @@ class AddOptionsToSelection
      *            tx_powermail.flexForm.feUserProperty.addFieldOptions.newfield =
      *                LLL:fileadmin/locallang.xlf:key
      *
-     * @param array $params
      * @return void
      */
     public function addOptionsForFeUserProperty(array &$params): void
@@ -93,7 +89,6 @@ class AddOptionsToSelection
      *            tx_powermail.flexForm.predefinedReceivers.addFieldOptions.receivers1 =
      *                LLL:fileadmin/locallang.xlf:key
      *
-     * @param array $params
      * @return void
      */
     public function addOptionsForPredefinedReceivers(array &$params): void
@@ -140,7 +135,6 @@ class AddOptionsToSelection
     /**
      * Add item to $this->params['items'] with value and label
      *
-     * @param string $value
      * @param string|null $label
      * @return void
      */
@@ -157,13 +151,11 @@ class AddOptionsToSelection
      *        if LLL parse
      *        if empty take value
      *
-     * @param string $label
-     * @param string $fallback
      * @return string
      */
     protected function getLabel(string $label, string $fallback): string
     {
-        if (strpos($label, 'LLL:') === 0) {
+        if (str_starts_with($label, 'LLL:')) {
             $label = ObjectUtility::getLanguageService()->sL($label);
         }
         if (empty($label)) {
@@ -198,7 +190,6 @@ class AddOptionsToSelection
     }
 
     /**
-     * @param string $type
      * @return AddOptionsToSelection
      */
     public function setType(string $type): AddOptionsToSelection

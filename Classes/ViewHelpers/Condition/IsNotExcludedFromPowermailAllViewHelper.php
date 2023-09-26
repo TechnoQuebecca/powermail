@@ -79,9 +79,6 @@ class IsNotExcludedFromPowermailAllViewHelper extends AbstractViewHelper
      *            submitPage.excludeFromFieldTypes = marker1, marker2
      *        }
      *
-     * @param string $type
-     * @param array $settings
-     * @param string $configurationType
      * @return array
      */
     protected function getExcludedValues(

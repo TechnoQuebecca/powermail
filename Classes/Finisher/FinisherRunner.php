@@ -23,11 +23,6 @@ class FinisherRunner
     /**
      * Call finisher classes after submit
      *
-     * @param Mail $mail
-     * @param bool $formSubmitted
-     * @param string $actionMethodName
-     * @param array $settings
-     * @param ContentObjectRenderer $contentObject
      * @return void
      * @throws ClassDoesNotExistException
      * @throws InterfaceNotImplementedException
@@ -45,7 +40,7 @@ class FinisherRunner
             if (!class_exists($class)) {
                 throw new ClassDoesNotExistException(
                     'Finisher class ' . $class . ' does not exists - check if file was loaded correctly',
-                    1578644684
+                    1_578_644_684
                 );
             }
             if (is_subclass_of($class, $this->interface)) {
@@ -64,7 +59,7 @@ class FinisherRunner
             } else {
                 throw new InterfaceNotImplementedException(
                     'Finisher does not implement ' . $this->interface,
-                    1578644680
+                    1_578_644_680
                 );
             }
         }
@@ -74,7 +69,6 @@ class FinisherRunner
      * Call methods in finisher class
      *      *Finisher()
      *
-     * @param AbstractFinisher $finisher
      * @return void
      */
     protected function callFinisherMethods(AbstractFinisher $finisher): void
@@ -90,8 +84,6 @@ class FinisherRunner
     /**
      * Call initializeFinisherMethods like "initializeUploadFinisher()"
      *
-     * @param AbstractFinisher $finisher
-     * @param string $finisherMethod
      * @return void
      */
     protected function callInitializeFinisherMethod(AbstractFinisher $finisher, string $finisherMethod): void
@@ -104,7 +96,6 @@ class FinisherRunner
     /**
      * Get all finisher classes from typoscript and sort them
      *
-     * @param array $settings
      * @return array
      */
     protected function getFinisherClasses(array $settings): array
@@ -114,9 +105,6 @@ class FinisherRunner
         return $finishers;
     }
 
-    /**
-     * @param array $finisherSettings
-     */
     protected function requireFile(array $finisherSettings): void
     {
         if (!empty($finisherSettings['require'])) {

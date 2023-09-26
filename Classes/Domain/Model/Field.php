@@ -19,10 +19,10 @@ use TYPO3\CMS\Extbase\Object\Exception;
  */
 class Field extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_powermail_domain_model_field';
-    const FIELD_TYPE_BASIC = 'basic';
-    const FIELD_TYPE_ADVANCED = 'advanced';
-    const FIELD_TYPE_EXTPORTABLE = 'exportable';
+    final public const TABLE_NAME = 'tx_powermail_domain_model_field';
+    final public const FIELD_TYPE_BASIC = 'basic';
+    final public const FIELD_TYPE_ADVANCED = 'advanced';
+    final public const FIELD_TYPE_EXTPORTABLE = 'exportable';
 
     /**
      * @var string
@@ -157,7 +157,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $title
      * @return void
      */
     public function setTitle(string $title): void
@@ -187,7 +186,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $type
      * @return void
      */
     public function setType(string $type): void
@@ -243,7 +241,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $type
      * @return bool
      * @throws DeprecatedException
      */
@@ -270,7 +267,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $settings
      * @return void
      */
     public function setSettings(string $settings): void
@@ -302,7 +298,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $path
      * @return void
      */
     public function setPath(string $path): void
@@ -319,7 +314,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param int $contentElement
      * @return void
      */
     public function setContentElement(int $contentElement): void
@@ -336,7 +330,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $text
      * @return void
      */
     public function setText(string $text): void
@@ -353,7 +346,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $prefillValue
      * @return void
      */
     public function setPrefillValue(string $prefillValue): void
@@ -362,7 +354,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $placeholder
      * @return void
      */
     public function setPlaceholder(string $placeholder): void
@@ -379,7 +370,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $createFromTyposcript
      * @return void
      */
     public function setCreateFromTyposcript(string $createFromTyposcript): void
@@ -404,7 +394,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param int $validation
      * @return void
      */
     public function setValidation(int $validation): void
@@ -413,7 +402,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $validationConfiguration
      * @return void
      */
     public function setValidationConfiguration(string $validationConfiguration): void
@@ -438,7 +426,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $css
      * @return void
      */
     public function setCss(string $css): void
@@ -447,7 +434,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $description
      * @return void
      */
     public function setDescription(string $description): void
@@ -464,7 +450,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param bool $multiselect
      * @return void
      */
     public function setMultiselect(bool $multiselect): void
@@ -495,7 +480,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $datepickerSettings
      * @return void
      */
     public function setDatepickerSettings(string $datepickerSettings): void
@@ -538,7 +522,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $feuserValue
      * @return void
      */
     public function setFeuserValue(string $feuserValue): void
@@ -555,7 +538,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param bool $senderEmail
      * @return void
      */
     public function setSenderEmail(bool $senderEmail): void
@@ -572,7 +554,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param bool $senderName
      * @return void
      */
     public function setSenderName(bool $senderName): void
@@ -589,7 +570,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param bool $mandatory
      * @return void
      */
     public function setMandatory(bool $mandatory): void
@@ -624,7 +604,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param string $marker
      * @return void
      */
     public function setMarker(string $marker): void
@@ -641,7 +620,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param int $sorting
      * @return void
      */
     public function setSorting(int $sorting): void
@@ -650,7 +628,6 @@ class Field extends AbstractEntity
     }
 
     /**
-     * @param Page $page
      * @return void
      */
     public function setPage(Page $page): void
@@ -675,7 +652,6 @@ class Field extends AbstractEntity
      *
      * @param string $string Options from the Textarea
      * @param string $typoScriptObjectPath Path to TypoScript like lib.blabla
-     * @param bool $parse
      * @return array Options Array
      * @throws Exception
      */
@@ -692,7 +668,6 @@ class Field extends AbstractEntity
 
     /**
      * @param string $string Options from the Textarea
-     * @param bool $parse
      * @return array
      * @throws Exception
      */
@@ -717,7 +692,6 @@ class Field extends AbstractEntity
     /**
      * Return expected value type from fieldtype
      *
-     * @param string $fieldType
      * @return int
      * @throws DeprecatedException
      */
@@ -812,7 +786,7 @@ class Field extends AbstractEntity
         $typoScript = BackendUtility::getPagesTSconfig($this->getPid());
         if (ArrayUtility::isValidPath($typoScript, 'tx_powermail./flexForm.')) {
             $configuration = $typoScript['tx_powermail.']['flexForm.'];
-            $configuration['type.'] = $configuration['type.'] ?? [];
+            $configuration['type.'] ??= [];
             foreach ((array)($configuration['type.']['addFieldOptions.'] ?? []) as $fieldTypeName => $fieldType) {
                 if (!empty($fieldType['export'])) {
                     if ($fieldType['export'] === '1') {

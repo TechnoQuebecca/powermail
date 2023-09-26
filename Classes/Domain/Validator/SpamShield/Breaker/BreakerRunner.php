@@ -22,30 +22,10 @@ class BreakerRunner
     protected string $interface = BreakerInterface::class;
 
     /**
-     * @var ?Mail
-     */
-    protected ?Mail $mail = null;
-
-    /**
-     * @var array
-     */
-    protected array $settings = [];
-
-    /**
-     * @var array
-     */
-    protected array $flexForm = [];
-
-    /**
      * @param Mail $mail
-     * @param array $settings
-     * @param array $flexForm
      */
-    public function __construct(Mail $mail, array $settings, array $flexForm)
+    public function __construct(protected ?\In2code\Powermail\Domain\Model\Mail $mail, protected array $settings, protected array $flexForm)
     {
-        $this->mail = $mail;
-        $this->settings = $settings;
-        $this->flexForm = $flexForm;
     }
 
     /**
@@ -61,19 +41,19 @@ class BreakerRunner
             if (!isset($breaker['class'])) {
                 throw new ConfigurationIsMissingException(
                     'Setup ...spamshield.disable.NO.class not given in TypoScript',
-                    1516024297083
+                    1_516_024_297_083
                 );
             }
             if (!class_exists($breaker['class'])) {
                 throw new ClassDoesNotExistException(
                     'Class ' . $breaker['class'] . ' does not exists - check if file was loaded with autoloader',
-                    1516024305363
+                    1_516_024_305_363
                 );
             }
             if (!is_subclass_of($breaker['class'], $this->interface)) {
                 throw new InterfaceNotImplementedException(
                     'Breaker method does not implement ' . $this->interface,
-                    1516024315548
+                    1_516_024_315_548
                 );
             }
             /** @var AbstractBreaker $breakerInstance */

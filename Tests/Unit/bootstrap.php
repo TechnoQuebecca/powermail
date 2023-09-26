@@ -10,7 +10,7 @@ if (empty($webRoot = getenv('TYPO3_PATH_WEB'))) {
 $buildRoot = realpath($webRoot . '/..');
 $autoload = $buildRoot . '/vendor/autoload.php';
 if (!file_exists($autoload)) {
-    throw new FileNotFoundException('Can not find autoload path', 1579187349);
+    throw new FileNotFoundException('Can not find autoload path', 1_579_187_349);
 }
 
 $bootstrapLoaded = false;
@@ -26,6 +26,6 @@ if (file_exists($bootstrap)) {
 if ($bootstrapLoaded === false) {
     throw new FileNotFoundException(
         'Can not find unit test bootstrap file. Did you do a composer update?',
-        1579187344
+        1_579_187_344
     );
 }

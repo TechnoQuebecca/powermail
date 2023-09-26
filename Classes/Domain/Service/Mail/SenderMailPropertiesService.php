@@ -21,25 +21,14 @@ class SenderMailPropertiesService
     use SignalTrait;
 
     /**
-     * TypoScript settings as plain array
-     *
-     * @var array
-     */
-    protected array $settings = [];
-
-    /**
      * TypoScript configuration for cObject parsing
      *
      * @var array
      */
     protected array $configuration = [];
 
-    /**
-     * @param array $settings
-     */
-    public function __construct(array $settings)
+    public function __construct(protected array $settings)
     {
-        $this->settings = $settings;
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
         $this->configuration = $typoScriptService->convertPlainArrayToTypoScriptArray($this->settings);
     }
@@ -66,7 +55,7 @@ class SenderMailPropertiesService
         }
 
         $signalArguments = [&$senderEmail, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $senderEmail;
     }
 
@@ -92,7 +81,7 @@ class SenderMailPropertiesService
         }
 
         $signalArguments = [&$senderName, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $senderName;
     }
 }

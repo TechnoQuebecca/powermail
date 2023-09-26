@@ -34,7 +34,7 @@ class ForeignValidator extends AbstractValidator
             if (!class_exists($validatorConf['class'])) {
                 throw new ClassDoesNotExistException(
                     'Class ' . $validatorConf['class'] . ' does not exists - check if file was loaded with autoloader',
-                    1578609804
+                    1_578_609_804
                 );
             }
             if (is_subclass_of($validatorConf['class'], $this->validatorInterface)) {
@@ -47,7 +47,7 @@ class ForeignValidator extends AbstractValidator
             } else {
                 throw new InterfaceNotImplementedException(
                     'Validator does not implement ' . $this->validatorInterface,
-                    1578609814
+                    1_578_609_814
                 );
             }
         }
@@ -58,7 +58,6 @@ class ForeignValidator extends AbstractValidator
     /**
      * Add errors and set validstate to false
      *
-     * @param Result $result
      * @return void
      */
     protected function addErrors(Result $result): void
@@ -73,7 +72,6 @@ class ForeignValidator extends AbstractValidator
     }
 
     /**
-     * @param array $validatorConf
      * @return void
      */
     protected function loadFile(array $validatorConf): void

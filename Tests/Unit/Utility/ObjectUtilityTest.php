@@ -30,7 +30,7 @@ class ObjectUtilityTest extends UnitTestCase
      */
     public function testGetLogger()
     {
-        $logger = ObjectUtility::getLogger(__CLASS__);
+        $logger = ObjectUtility::getLogger(self::class);
         self::assertInstanceOf(Logger::class, $logger);
     }
 }

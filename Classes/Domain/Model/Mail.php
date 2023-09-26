@@ -14,7 +14,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Mail extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_powermail_domain_model_mail';
+    final public const TABLE_NAME = 'tx_powermail_domain_model_mail';
 
     /**
      * @var string
@@ -145,9 +145,9 @@ class Mail extends AbstractEntity
      * All mails and answers should be stored with sys_language_uid=-1 to get those values from persisted objects
      * in fe requests in every language (e.g. for optin mails, etc...)
      *
-     * @var int
+     * @var int|null
      */
-    protected $_languageUid = -1;
+    protected ?int $_languageUid = -1;
 
     /**
      * __construct
@@ -174,7 +174,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $senderName
      * @return Mail
      */
     public function setSenderName(string $senderName): Mail
@@ -192,7 +191,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $senderMail
      * @return Mail
      */
     public function setSenderMail(string $senderMail): Mail
@@ -210,7 +208,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $subject
      * @return Mail
      */
     public function setSubject(string $subject): Mail
@@ -228,7 +225,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $receiverMail
      * @return Mail
      */
     public function setReceiverMail(string $receiverMail): Mail
@@ -246,7 +242,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $body
      * @return Mail
      */
     public function setBody(string $body): Mail
@@ -267,7 +262,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param User $feuser
      * @return Mail
      */
     public function setFeuser(User $feuser): Mail
@@ -285,7 +279,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $spamFactor
      * @return Mail
      */
     public function setSpamFactor(string $spamFactor): Mail
@@ -303,7 +296,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param int $time
      * @return Mail
      */
     public function setTime(int $time): Mail
@@ -321,7 +313,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $senderIp
      * @return Mail
      */
     public function setSenderIp(string $senderIp): Mail
@@ -339,7 +330,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $userAgent
      * @return Mail
      */
     public function setUserAgent(string $userAgent): Mail
@@ -357,7 +347,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param Form $form
      * @return Mail
      */
     public function setForm(Form $form): Mail
@@ -385,7 +374,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param Answer $answer
      * @return void
      */
     public function addAnswer(Answer $answer): void
@@ -394,7 +382,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param Answer $answerToRemove
      * @return void
      */
     public function removeAnswer(Answer $answerToRemove): void
@@ -411,7 +398,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param DateTime $crdate
      * @return Mail
      */
     public function setCrdate(DateTime $crdate): Mail
@@ -429,7 +415,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param bool $hidden
      * @return Mail
      */
     public function setHidden(bool $hidden): Mail
@@ -439,7 +424,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $marketingBrowserLanguage
      * @return Mail
      */
     public function setMarketingBrowserLanguage(string $marketingBrowserLanguage): Mail
@@ -457,7 +441,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $marketingCountry
      * @return Mail
      */
     public function setMarketingCountry(string $marketingCountry): Mail
@@ -475,7 +458,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param int $marketingFrontendLanguage
      * @return Mail
      */
     public function setMarketingFrontendLanguage(int $marketingFrontendLanguage): Mail
@@ -493,7 +475,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param bool $marketingMobileDevice
      * @return Mail
      */
     public function setMarketingMobileDevice(bool $marketingMobileDevice): Mail
@@ -511,13 +492,12 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param array $marketingPageFunnel
      * @return Mail
      */
     public function setMarketingPageFunnel(array $marketingPageFunnel): Mail
     {
         if (is_array($marketingPageFunnel)) {
-            $marketingPageFunnel = json_encode($marketingPageFunnel);
+            $marketingPageFunnel = json_encode($marketingPageFunnel, JSON_THROW_ON_ERROR);
         }
         $this->marketingPageFunnel = $marketingPageFunnel;
         return $this;
@@ -529,7 +509,7 @@ class Mail extends AbstractEntity
     public function getMarketingPageFunnel(): array
     {
         if (ArrayUtility::isJsonArray($this->marketingPageFunnel)) {
-            return json_decode($this->marketingPageFunnel, true);
+            return json_decode($this->marketingPageFunnel, true, 512, JSON_THROW_ON_ERROR);
         }
         return (array)$this->marketingPageFunnel;
     }
@@ -551,7 +531,6 @@ class Mail extends AbstractEntity
     /**
      * Return marketing pagefunnel as commaseparated list
      *
-     * @param string $glue
      * @return string
      */
     public function getMarketingPageFunnelString(string $glue = ', '): string
@@ -561,7 +540,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $marketingReferer
      * @return Mail
      */
     public function setMarketingReferer(string $marketingReferer): Mail
@@ -579,7 +557,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $marketingRefererDomain
      * @return Mail
      */
     public function setMarketingRefererDomain(string $marketingRefererDomain): Mail
@@ -622,9 +599,7 @@ class Mail extends AbstractEntity
     {
         if (is_null($this->answersByFieldMarker)) {
             $answersArray = $this->getAnswers()->toArray();
-            $this->answersByFieldMarker = array_combine(array_map(function (Answer $answer) {
-                return $answer->getField()->getMarker();
-            }, $answersArray), $answersArray);
+            $this->answersByFieldMarker = array_combine(array_map(fn(Answer $answer) => $answer->getField()->getMarker(), $answersArray), $answersArray);
         }
         return $this->answersByFieldMarker;
     }
@@ -642,15 +617,12 @@ class Mail extends AbstractEntity
     {
         if (is_null($this->answersByFieldUid)) {
             $answersArray = $this->getAnswers()->toArray();
-            $this->answersByFieldUid = array_combine(array_map(function (Answer $answer) {
-                return $answer->getField()->getUid();
-            }, $answersArray), $answersArray);
+            $this->answersByFieldUid = array_combine(array_map(fn(Answer $answer) => $answer->getField()->getUid(), $answersArray), $answersArray);
         }
         return $this->answersByFieldUid;
     }
 
     /**
-     * @param int $type
      * @return Answer[]
      */
     public function getAnswersByValueType(int $type): array
@@ -675,7 +647,6 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param array $additionalData
      * @return void
      */
     public function setAdditionalData(array $additionalData): void
@@ -684,11 +655,9 @@ class Mail extends AbstractEntity
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
      * @return void
      */
-    public function addAdditionalData(string $key, $value): void
+    public function addAdditionalData(string $key, mixed $value): void
     {
         $this->additionalData[$key] = $value;
     }

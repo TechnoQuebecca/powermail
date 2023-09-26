@@ -76,7 +76,7 @@ call_user_func(function () {
     /**
      * JavaScript evaluation of TCA fields
      */
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['\In2code\Powermail\Tca\EvaluateEmail'] =
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['\\' . \In2code\Powermail\Tca\EvaluateEmail::class] =
         'EXT:powermail/Classes/Tca/EvaluateEmail.php';
 
     /**
@@ -88,17 +88,17 @@ call_user_func(function () {
     /**
      * User field registrations in TCA/FlexForm
      */
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1580037906] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1_580_037_906] = [
         'nodeName' => 'powermailShowFormNoteIfNoEmailOrNameSelected',
         'priority' => 50,
         'class' => \In2code\Powermail\Tca\ShowFormNoteIfNoEmailOrNameSelected::class,
     ];
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1580039839] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1_580_039_839] = [
         'nodeName' => 'powermailMarker',
         'priority' => 50,
         'class' => \In2code\Powermail\Tca\Marker::class,
     ];
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1580065317] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1_580_065_317] = [
         'nodeName' => 'powermailShowFormNoteEditForm',
         'priority' => 50,
         'class' => \In2code\Powermail\Tca\ShowFormNoteEditForm::class,

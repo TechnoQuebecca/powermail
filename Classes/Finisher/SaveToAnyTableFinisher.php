@@ -80,8 +80,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
     /**
      * Preperation function for a single table
      *
-     * @param int $numberKey
-     * @param array $tableConfiguration
      * @return void
      * @throws DBALException
      * @throws DatabaseFieldMissingException
@@ -103,8 +101,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
     /**
      * Set all properties for a table configuration
      *
-     * @param SaveToAnyTableService $saveService
-     * @param array $tableConfiguration
      * @return void
      */
     protected function setPropertiesInSaveService(SaveToAnyTableService $saveService, array $tableConfiguration): void
@@ -124,8 +120,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
     /**
      * Set mode and uniqueField in saveToAnyTableService
      *
-     * @param SaveToAnyTableService $saveService
-     * @param array $tableConfiguration
      * @return void
      */
     protected function setModeInSaveService(SaveToAnyTableService $saveService, array $tableConfiguration): void
@@ -176,7 +170,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
      *      _table = TEXT
      *      _table.value = tableName
      *
-     * @param array $tableConfiguration
      * @return string
      */
     protected function getTableName(array $tableConfiguration): string
@@ -210,7 +203,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
     /**
      * Should this key skipped because it starts with _ or ends with .
      *
-     * @param string $key
      * @return bool
      */
     protected function isSkippedKey(string $key): bool
@@ -221,7 +213,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
     /**
      * Add array to dataArray
      *
-     * @param array $array
      * @return void
      */
     protected function addArrayToDataArray(array $array): void
@@ -240,7 +231,6 @@ class SaveToAnyTableFinisher extends AbstractFinisher implements FinisherInterfa
     }
 
     /**
-     * @param array $dataArray
      * @return SaveToAnyTableFinisher
      */
     public function setDataArray(array $dataArray): SaveToAnyTableFinisher

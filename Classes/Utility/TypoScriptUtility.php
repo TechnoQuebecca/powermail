@@ -58,7 +58,6 @@ class TypoScriptUtility
     /**
      * Return configured captcha extension
      *
-     * @param array $settings
      * @return string
      */
     public static function getCaptchaExtensionFromSettings(array $settings): string

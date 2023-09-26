@@ -29,14 +29,13 @@ class ValueBreaker extends AbstractBreaker
     }
 
     /**
-     * @param array $configuration
      * @return void
      * @throws ConfigurationIsMissingException
      */
     protected function checkConfiguration(array $configuration): void
     {
         if (empty($configuration['value'])) {
-            throw new ConfigurationIsMissingException('No value given to check for', 1516025541289);
+            throw new ConfigurationIsMissingException('No value given to check for', 1_516_025_541_289);
         }
     }
 }

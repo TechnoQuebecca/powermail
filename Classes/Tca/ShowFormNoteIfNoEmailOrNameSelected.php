@@ -160,7 +160,6 @@ class ShowFormNoteIfNoEmailOrNameSelected extends AbstractFormElement
     /**
      * Get localized label
      *
-     * @param string $key
      * @return string
      */
     protected function getLabel(string $key): string

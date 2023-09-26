@@ -374,7 +374,7 @@ $mailsTca = [
 
 if (ConfigurationUtility::isDisableMarketingInformationActive()) {
     foreach (array_keys($mailsTca['columns']) as $columnName) {
-        if (strpos($columnName, 'marketing_') === 0) {
+        if (str_starts_with($columnName, 'marketing_')) {
             unset($mailsTca['columns'][$columnName]);
         }
     }

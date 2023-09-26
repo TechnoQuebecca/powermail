@@ -22,7 +22,7 @@ class LinkMethod extends AbstractMethod
             }
             preg_match_all('@http://|https://|ftp://@', $answer->getValue(), $result);
             if (isset($result[0])) {
-                $linkAmount += count($result[0]);
+                $linkAmount += is_countable($result[0]) ? count($result[0]) : 0;
             }
         }
         return $linkAmount > (int)$this->configuration['linkLimit'];

@@ -15,6 +15,6 @@ class RemoveQuoteViewHelper extends AbstractViewHelper
      */
     public function render(): string
     {
-        return str_replace('"', '\'', $this->renderChildren());
+        return str_replace('"', '\'', (string) $this->renderChildren());
     }
 }

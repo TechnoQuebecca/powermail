@@ -44,33 +44,19 @@ abstract class AbstractFinisher implements FinisherInterface
      */
     protected string $actionMethodName = '';
 
-    /**
-     * @var ContentObjectRenderer
-     */
-    protected ContentObjectRenderer $contentObject;
-
-    /**
-     * @param Mail $mail
-     * @param array $configuration
-     * @param array $settings
-     * @param bool $formSubmitted
-     * @param string $actionMethodName
-     * @param ContentObjectRenderer $contentObject
-     */
     public function __construct(
         Mail $mail,
         array $configuration,
         array $settings,
         bool $formSubmitted,
         string $actionMethodName,
-        ContentObjectRenderer $contentObject
+        protected ContentObjectRenderer $contentObject
     ) {
         $this->setMail($mail);
         $this->setConfiguration($configuration);
         $this->setSettings($settings);
         $this->setFormSubmitted($formSubmitted);
         $this->setActionMethodName($actionMethodName);
-        $this->contentObject = $contentObject;
     }
 
     /**
@@ -118,7 +104,6 @@ abstract class AbstractFinisher implements FinisherInterface
     }
 
     /**
-     * @param array $configuration
      * @return FinisherInterface
      */
     public function setConfiguration(array $configuration): FinisherInterface

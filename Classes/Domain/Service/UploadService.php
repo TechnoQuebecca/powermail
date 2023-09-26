@@ -51,7 +51,6 @@ class UploadService implements SingletonInterface
     protected array $settings = [];
 
     /**
-     * @param array $settings
      * @return void
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
@@ -67,7 +66,7 @@ class UploadService implements SingletonInterface
         $this->fillFilesFromHiddenFields();
         $this->fillFilesFromExistingMail();
         $this->makeUniqueFilenames();
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$this]);
+        $this->signalDispatch(self::class, __FUNCTION__, [$this]);
     }
 
     /**
@@ -99,7 +98,6 @@ class UploadService implements SingletonInterface
      * Get all new filenames by given marker (to show filenames on confirmation page again, etc...)
      * If empty, use values from arguments
      *
-     * @param string $marker
      * @return array
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -117,7 +115,6 @@ class UploadService implements SingletonInterface
     }
 
     /**
-     * @param File $file
      * @param string $fileExtensions allowed file extensions as commaseparated list
      * @return bool
      */
@@ -138,8 +135,6 @@ class UploadService implements SingletonInterface
     }
 
     /**
-     * @param File $file
-     * @param int $maximumSize
      * @return bool
      */
     public function isFileSizeSmallerThenAllowed(File $file, int $maximumSize): bool
@@ -298,7 +293,6 @@ class UploadService implements SingletonInterface
     }
 
     /**
-     * @param File $file
      * @return bool
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -316,7 +310,7 @@ class UploadService implements SingletonInterface
      */
     protected function randomizeFileName($filename, $prependOriginalFileName = false): string
     {
-        $fileInfo = pathinfo($filename);
+        $fileInfo = pathinfo((string) $filename);
         $randomizedFileName = '';
         if ($prependOriginalFileName) {
             $randomizedFileName .= $fileInfo['filename'] . '-';
@@ -334,7 +328,7 @@ class UploadService implements SingletonInterface
      */
     public function getFiles(): array
     {
-        $this->signalDispatch(__CLASS__, __FUNCTION__, [$this]);
+        $this->signalDispatch(self::class, __FUNCTION__, [$this]);
         return $this->files;
     }
 
@@ -349,7 +343,6 @@ class UploadService implements SingletonInterface
     }
 
     /**
-     * @param File $file
      * @return void
      */
     public function addFile(File $file): void
@@ -394,7 +387,6 @@ class UploadService implements SingletonInterface
      *        image_01 => image
      *        image_01_02 => image_01
      *
-     * @param string $string
      * @return string
      */
     protected function removeAppendingNumbersInString(string $string): string
@@ -407,7 +399,6 @@ class UploadService implements SingletonInterface
      * - This filename was used before
      * - Or if there is a file with this name in the target upload folder
      *
-     * @param File $file
      * @return bool
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -418,7 +409,6 @@ class UploadService implements SingletonInterface
     }
 
     /**
-     * @param array $arguments
      * @return bool
      */
     protected function isOptinConfirmWithExistingMail(array $arguments): bool

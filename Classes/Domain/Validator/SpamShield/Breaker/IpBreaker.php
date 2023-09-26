@@ -38,7 +38,7 @@ class IpBreaker extends AbstractBreaker
             if (count($rangeParts) !== count($givenParts)) {
                 throw new \UnexpectedValueException(
                     'Number of segments between current ip and compared ip does not match',
-                    1516024779382
+                    1_516_024_779_382
                 );
             }
             foreach (array_keys($rangeParts) as $key) {
@@ -61,7 +61,7 @@ class IpBreaker extends AbstractBreaker
         if (empty($configuration['ipWhitelist'])) {
             throw new ConfigurationIsMissingException(
                 'Setup ...spamshield.disable.NO.configuration.ipWhitelist not given',
-                1516024283512
+                1_516_024_283_512
             );
         }
         return GeneralUtility::trimExplode(',', $configuration['ipWhitelist'], true);

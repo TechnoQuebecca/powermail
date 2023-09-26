@@ -122,7 +122,6 @@ class GetNewMarkerNamesForFormService
     /**
      * Get all fields to a form
      *
-     * @param Form $form
      * @return array
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
@@ -162,8 +161,6 @@ class GetNewMarkerNamesForFormService
     }
 
     /**
-     * @param Field $field
-     * @param bool $forceReset
      * @return string
      * @throws Exception
      */
@@ -182,7 +179,6 @@ class GetNewMarkerNamesForFormService
     /**
      * remove appendix "_xx"
      *
-     * @param string $string
      * @return string
      */
     protected function removeAppendix(string $string): string
@@ -198,8 +194,6 @@ class GetNewMarkerNamesForFormService
     /**
      * add appendix "_xx"
      *
-     * @param string $string
-     * @param int $iteration
      * @return string
      */
     protected function addAppendix(string $string, int $iteration): string
@@ -211,7 +205,6 @@ class GetNewMarkerNamesForFormService
     /**
      * add appendix "marker" if marker is only a number
      *
-     * @param string $marker
      * @return string
      */
     protected function dontAllowNumbersOnly(string $marker): string
@@ -223,8 +216,6 @@ class GetNewMarkerNamesForFormService
     }
 
     /**
-     * @param string $marker
-     * @param array $newArray
      * @return bool
      */
     protected function isMarkerAllowed(string $marker, array $newArray): bool

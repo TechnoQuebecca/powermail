@@ -256,7 +256,6 @@ class ExportService
     }
 
     /**
-     * @param QueryResultInterface|null $mails
      * @return ExportService
      */
     public function setMails(?QueryResultInterface $mails): ExportService
@@ -281,7 +280,6 @@ class ExportService
     }
 
     /**
-     * @param string $format
      * @return ExportService
      */
     public function setFormat(string $format): ExportService
@@ -363,10 +361,9 @@ class ExportService
     }
 
     /**
-     * @param mixed $senderEmails
      * @return ExportService
      */
-    public function setSenderEmails($senderEmails): ExportService
+    public function setSenderEmails(mixed $senderEmails): ExportService
     {
         if (is_string($senderEmails)) {
             $senderEmails = GeneralUtility::trimExplode(',', $senderEmails, true);
@@ -384,7 +381,6 @@ class ExportService
     }
 
     /**
-     * @param string $subject
      * @return ExportService
      */
     public function setSubject(string $subject): ExportService
@@ -462,7 +458,6 @@ class ExportService
     }
 
     /**
-     * @param array $additionalProperties
      * @return ExportService
      */
     public function setAdditionalProperties(array $additionalProperties): ExportService
@@ -472,8 +467,6 @@ class ExportService
     }
 
     /**
-     * @param string $additionalProperty
-     * @param string $propertyName
      * @return void
      */
     public function addAdditionalProperty(string $additionalProperty, string $propertyName): void
@@ -490,7 +483,6 @@ class ExportService
     }
 
     /**
-     * @param bool $addAttachment
      * @return ExportService
      */
     public function setAddAttachment(bool $addAttachment): ExportService
@@ -500,7 +492,6 @@ class ExportService
     }
 
     /**
-     * @param bool $absolute
      * @return string
      */
     public function getStorageFolder(bool $absolute = false): string
@@ -513,7 +504,6 @@ class ExportService
     }
 
     /**
-     * @param string $storageFolder
      * @return ExportService
      */
     public function setStorageFolder(string $storageFolder): ExportService
@@ -531,7 +521,6 @@ class ExportService
     }
 
     /**
-     * @param string $emailTemplate
      * @return ExportService
      */
     public function setEmailTemplate(string $emailTemplate): ExportService

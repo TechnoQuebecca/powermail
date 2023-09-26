@@ -85,7 +85,7 @@ class VariablesViewHelper extends AbstractViewHelper
     public function renderChildren()
     {
         $content = parent::renderChildren();
-        $content = str_replace('-&gt;', '->', $content);
+        $content = str_replace('-&gt;', '->', (string) $content);
         return $content;
     }
 
@@ -94,7 +94,6 @@ class VariablesViewHelper extends AbstractViewHelper
      *        <p>{powermail_all}</p> =>
      *            {powermail_all}
      *
-     * @param string $content
      * @return string
      */
     protected function removePowermailAllParagraphTagWrap(string $content): string

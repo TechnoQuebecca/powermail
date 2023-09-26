@@ -14,10 +14,9 @@ class StringValidator extends AbstractValidator
     /**
      * Mandatory Check
      *
-     * @param mixed $value
      * @return bool
      */
-    protected function validateMandatory($value)
+    protected function validateMandatory(mixed $value)
     {
         return StringUtility::isNotEmpty($value);
     }
@@ -25,7 +24,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test string if valid email
      *
-     * @param string $value
      * @return bool
      */
     protected function validateEmail(string $value): bool
@@ -36,7 +34,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test string if its an URL
      *
-     * @param string $value
      * @return bool
      */
     protected function validateUrl(string $value): bool
@@ -58,7 +55,6 @@ class StringValidator extends AbstractValidator
      *        +49 (0) 123 3456789
      *        +49 (0)123 / 34567 - 89
      *
-     * @param string $value
      * @return bool
      */
     protected function validatePhone(string $value): bool
@@ -70,7 +66,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test string if there are only numbers
      *
-     * @param string $value
      * @return bool
      */
     protected function validateNumbersOnly(string $value): bool
@@ -81,7 +76,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test string if there are only letters
      *
-     * @param string $value
      * @return bool
      */
     protected function validateLettersOnly(string $value): bool
@@ -92,7 +86,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test if number is greater than configuration
      *
-     * @param string $value
      * @param string $configuration e.g. "4"
      * @return bool
      */
@@ -104,7 +97,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test if number is less than configuration
      *
-     * @param string $value
      * @param string $configuration e.g. "4"
      * @return bool
      */
@@ -116,7 +108,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test if number is in range
      *
-     * @param string $value
      * @param string $configuration e.g. "1,6" or "6"
      * @return bool
      */
@@ -136,7 +127,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test if stringlength is in range
      *
-     * @param string $value
      * @param string $configuration e.g. "1,6" or "6"
      * @return bool
      */
@@ -157,7 +147,6 @@ class StringValidator extends AbstractValidator
     /**
      * Test if value is ok with RegEx
      *
-     * @param string $value
      * @param string $configuration e.g. "https?://.+"
      * @return bool
      */

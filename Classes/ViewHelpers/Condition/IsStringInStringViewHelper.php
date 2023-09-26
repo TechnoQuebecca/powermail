@@ -27,6 +27,6 @@ class IsStringInStringViewHelper extends AbstractViewHelper
      */
     public function render(): bool
     {
-        return stristr($this->arguments['haystack'], $this->arguments['needle']) !== false;
+        return stristr((string) $this->arguments['haystack'], (string) $this->arguments['needle']) !== false;
     }
 }

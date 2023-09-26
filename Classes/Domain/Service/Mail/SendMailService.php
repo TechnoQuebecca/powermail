@@ -69,7 +69,6 @@ class SendMailService
      *        $email['template'] = 'PathToTemplate/';
      *        $email['rteBody'] = 'This is the <b>content</b> of the RTE';
      *        $email['format'] = 'both'; // or plain or html
-     * @param Mail $mail
      * @param array $settings TypoScript Settings
      * @param string $type Email to "sender" or "receiver"
      * @return bool Mail successfully sent
@@ -84,7 +83,7 @@ class SendMailService
         $this->initialize($mail, $settings, $type);
         $this->parseAndOverwriteVariables($email, $mail);
         if ($settings['debug']['mail']) {
-            $logger = ObjectUtility::getLogger(__CLASS__);
+            $logger = ObjectUtility::getLogger(self::class);
             $logger->info('Mail properties', [$email]);
         }
         if (!GeneralUtility::validEmail($email['receiverEmail']) ||
@@ -99,7 +98,6 @@ class SendMailService
     }
 
     /**
-     * @param array $email
      * @return bool
      * @throws InvalidConfigurationTypeException
      * @throws InvalidExtensionNameException
@@ -128,10 +126,10 @@ class SendMailService
 
         $email['send'] = true;
         $signalArguments = [$message, &$email, $this];
-        $this->signalDispatch(__CLASS__, 'sendTemplateEmailBeforeSend', $signalArguments);
+        $this->signalDispatch(self::class, 'sendTemplateEmailBeforeSend', $signalArguments);
         if (!$email['send']) {
             if ($this->settings['debug']['mail']) {
-                $logger = ObjectUtility::getLogger(__CLASS__);
+                $logger = ObjectUtility::getLogger(self::class);
                 $logger->info(
                     'Mail was not sent: the signal has aborted sending. Email array after signal execution:',
                     [$email]
@@ -148,7 +146,6 @@ class SendMailService
     /**
      * Add CC receivers
      *
-     * @param MailMessage $message
      * @return MailMessage
      * @throws Exception
      */
@@ -167,7 +164,6 @@ class SendMailService
     /**
      * Add BCC receivers
      *
-     * @param MailMessage $message
      * @return MailMessage
      * @throws Exception
      */
@@ -186,7 +182,6 @@ class SendMailService
     /**
      * Add return path
      *
-     * @param MailMessage $message
      * @return MailMessage
      * @throws Exception
      */
@@ -205,7 +200,6 @@ class SendMailService
     /**
      * Add reply addresses if replyToEmail and replyToName isset
      *
-     * @param MailMessage $message
      * @return MailMessage
      * @throws Exception
      */
@@ -228,24 +222,22 @@ class SendMailService
     /**
      * Add mail priority
      *
-     * @param MailMessage $message
      * @return MailMessage
      */
     protected function addPriority(MailMessage $message): MailMessage
     {
         $message->priority(1);
         if ($this->type === 'sender') {
-            $this->settings['sender']['overwrite'] = $this->settings['sender']['overwrite']??[];
+            $this->settings['sender']['overwrite'] ??= [];
             $message->priority((int)($this->settings['sender']['overwrite']['priority']??0));
         } elseif ($this->type === 'receiver') {
-            $this->settings['receiver']['overwrite'] = $this->settings['receiver']['overwrite']??[];
+            $this->settings['receiver']['overwrite'] ??= [];
             $message->priority((int)($this->settings['receiver']['overwrite']['priority']??0));
         }
         return $message;
     }
 
     /**
-     * @param MailMessage $message
      * @return MailMessage
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -268,7 +260,6 @@ class SendMailService
     /**
      * Add attachments from TypoScript definition
      *
-     * @param MailMessage $message
      * @return MailMessage
      * @throws Exception
      */
@@ -285,7 +276,7 @@ class SendMailService
                 if (file_exists($fileAbsolute)) {
                     $message->attachFromPath($fileAbsolute);
                 } else {
-                    $logger = ObjectUtility::getLogger(__CLASS__);
+                    $logger = ObjectUtility::getLogger(self::class);
                     $logger->critical('File to attach does not exist', [$file]);
                 }
             }
@@ -294,8 +285,6 @@ class SendMailService
     }
 
     /**
-     * @param MailMessage $message
-     * @param array $email
      * @return MailMessage
      * @throws InvalidConfigurationTypeException
      * @throws InvalidExtensionNameException
@@ -312,8 +301,6 @@ class SendMailService
     }
 
     /**
-     * @param MailMessage $message
-     * @param array $email
      * @return MailMessage
      * @throws InvalidConfigurationTypeException
      * @throws InvalidExtensionNameException
@@ -333,12 +320,12 @@ class SendMailService
     /**
      * Set Sender Header according to RFC 2822 - 3.6.2 Originator fields
      *
-     * @param MailMessage $message
      * @return MailMessage
      * @throws Exception
      */
     protected function addSenderHeader(MailMessage $message): MailMessage
     {
+        $senderHeaderConfig = [];
         if ($this->type === 'sender') {
             $senderHeaderConfig= $this->configuration['sender.']['senderHeader.']??[];
         } elseif ($this->type === 'receiver') {
@@ -363,7 +350,6 @@ class SendMailService
     }
 
     /**
-     * @param array $email
      * @return string
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -396,7 +382,7 @@ class SendMailService
         if (!empty($email['variables'])) {
             $standaloneView->assignMultiple($email['variables']);
         }
-        $this->signalDispatch(__CLASS__, __FUNCTION__ . 'BeforeRender', [$standaloneView, $email, $this]);
+        $this->signalDispatch(self::class, __FUNCTION__ . 'BeforeRender', [$standaloneView, $email, $this]);
         $body = $standaloneView->render();
         $this->mail->setBody($body);
         return $body;
@@ -405,7 +391,6 @@ class SendMailService
     /**
      * Update mail record with parsed fields
      *
-     * @param array $email
      * @return void
      */
     protected function updateMail(array $email): void
@@ -419,7 +404,6 @@ class SendMailService
     }
 
     /**
-     * @param array $settings
      * @return array
      */
     protected function getConfigurationFromSettings(array $settings): array
@@ -431,8 +415,6 @@ class SendMailService
     /**
      * Parsing variables with fluid engine to allow viewhelpers in flexform
      *
-     * @param array $email
-     * @param Mail $mail
      * @return void
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -485,9 +467,6 @@ class SendMailService
     }
 
     /**
-     * @param Mail $mail
-     * @param array $settings
-     * @param string $type
      * @return void
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException

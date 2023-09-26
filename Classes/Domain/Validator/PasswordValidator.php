@@ -42,7 +42,6 @@ class PasswordValidator extends AbstractValidator
     /**
      * Get mirror value from POST params
      *
-     * @param Field $field
      * @return string
      */
     protected function getMirroredValueOfPasswordField(Field $field): string
@@ -53,7 +52,6 @@ class PasswordValidator extends AbstractValidator
     /**
      * Checks if given form has a password field
      *
-     * @param Form $form
      * @return bool
      */
     protected function formHasPassword(Form $form): bool

@@ -63,11 +63,6 @@ class FlexFormManipulationHook
      * Add $row['pid'] to tt_content powermail data structure identifiers to help data
      * structure hook to find page ts.
      *
-     * @param array $fieldTca
-     * @param string $tableName
-     * @param string $fieldName
-     * @param array $row
-     * @param array $identifier
      * @return array $identifier Modified identifier
      */
     public function getDataStructureIdentifierPostProcess(
@@ -142,7 +137,6 @@ class FlexFormManipulationHook
     /**
      * Get sheetname and remove from configuration array
      *
-     * @param array $configuration
      * @return string
      */
     protected function getSheetNameAndRemoveFromConfiguration(array &$configuration): string
@@ -159,7 +153,6 @@ class FlexFormManipulationHook
      * Check if this flexform is loaded in powermail Pi1 context
      *
      * @param string $table Table name
-     * @param array $row
      * @return bool
      */
     protected function isPowermailFlexForm(string $table, array $row): bool

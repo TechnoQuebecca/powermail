@@ -24,7 +24,6 @@ class FieldRepository extends AbstractRepository
      * Find all records from given uids and
      * respect the sorting
      *
-     * @param array $uids
      * @return array
      */
     public function findByUids(array $uids): array
@@ -45,8 +44,6 @@ class FieldRepository extends AbstractRepository
     /**
      * Return uid from given field marker and form
      *
-     * @param string $marker
-     * @param int $formUid
      * @return Field
      * @throws Exception
      * @throws InvalidQueryException
@@ -121,7 +118,6 @@ class FieldRepository extends AbstractRepository
     /**
      * Get parent page uid form given field uid
      *
-     * @param int $fieldUid
      * @return int
      */
     protected function getPageUidFromFieldUid(int $fieldUid): int
@@ -137,8 +133,6 @@ class FieldRepository extends AbstractRepository
     }
 
     /**
-     * @param int $pageUid
-     * @param int $sysLanguageUid
      * @return int
      */
     protected function getLocalizedPageUidFromPageUid(int $pageUid, int $sysLanguageUid): int
@@ -156,8 +150,6 @@ class FieldRepository extends AbstractRepository
     /**
      * Return uid from given field marker and form (if no IRRE)
      *
-     * @param string $marker
-     * @param int $formUid
      * @return Field
      * @throws InvalidQueryException
      */
@@ -229,7 +221,6 @@ class FieldRepository extends AbstractRepository
     }
 
     /**
-     * @param int $uid
      * @return string
      * @throws DBALException
      */
@@ -246,7 +237,6 @@ class FieldRepository extends AbstractRepository
     }
 
     /**
-     * @param int $uid
      * @return string
      * @throws DBALException
      */

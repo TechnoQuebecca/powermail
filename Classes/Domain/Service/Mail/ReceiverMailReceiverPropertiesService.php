@@ -28,22 +28,10 @@ class ReceiverMailReceiverPropertiesService
 {
     use SignalTrait;
 
-    const RECEIVERS_DEFAULT = 0;
-    const RECEIVERS_FRONTENDGROUP = 1;
-    const RECEIVERS_PREDEFINED = 2;
-    const RECEIVERS_BACKENDGROUP = 3;
-
-    /**
-     * @var Mail|null
-     */
-    protected ?Mail $mail = null;
-
-    /**
-     * TypoScript settings as plain array
-     *
-     * @var array
-     */
-    protected array $settings = [];
+    final public const RECEIVERS_DEFAULT = 0;
+    final public const RECEIVERS_FRONTENDGROUP = 1;
+    final public const RECEIVERS_PREDEFINED = 2;
+    final public const RECEIVERS_BACKENDGROUP = 3;
 
     /**
      * TypoScript configuration for cObject parsing
@@ -59,15 +47,12 @@ class ReceiverMailReceiverPropertiesService
 
     /**
      * @param Mail $mail
-     * @param array $settings
      * @throws Exception
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
      */
-    public function __construct(Mail $mail, array $settings)
+    public function __construct(protected ?\In2code\Powermail\Domain\Model\Mail $mail, protected array $settings)
     {
-        $this->mail = $mail;
-        $this->settings = $settings;
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
         $this->configuration = $typoScriptService->convertPlainArrayToTypoScriptArray($this->settings);
         $this->setReceiverEmails();
@@ -105,7 +90,7 @@ class ReceiverMailReceiverPropertiesService
         }
 
         $signalArguments = [&$receiverName, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $receiverName;
     }
 
@@ -129,7 +114,7 @@ class ReceiverMailReceiverPropertiesService
         $emailArray = $this->getEmailFromDevelopmentContext($emailArray);
 
         $signalArguments = [&$emailArray, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         $this->receiverEmails = $emailArray;
     }
 
@@ -155,7 +140,6 @@ class ReceiverMailReceiverPropertiesService
     /**
      * Read emails from frontend users within a group
      *
-     * @param array $emailArray
      * @param int $uid fe_groups.uid
      * @return array Array with emails
      * @throws InvalidQueryException
@@ -179,7 +163,6 @@ class ReceiverMailReceiverPropertiesService
     /**
      * Read emails from backend users within a group
      *
-     * @param array $emailArray
      * @param int $uid be_groups.uid
      * @return array
      * @throws InvalidQueryException
@@ -231,7 +214,6 @@ class ReceiverMailReceiverPropertiesService
     /**
      * Get email string from TypoScript overwrite
      *
-     * @param array $emailArray
      * @return array
      * @throws Exception
      */
@@ -252,7 +234,6 @@ class ReceiverMailReceiverPropertiesService
     /**
      * Get email from development context
      *
-     * @param array $emailArray
      * @return array
      */
     protected function getEmailFromDevelopmentContext(array $emailArray): array

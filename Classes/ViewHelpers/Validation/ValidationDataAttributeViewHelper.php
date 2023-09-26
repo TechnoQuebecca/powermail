@@ -43,31 +43,23 @@ class ValidationDataAttributeViewHelper extends AbstractValidationViewHelper
         $field = $this->arguments['field'];
         $additionalAttributes = $this->arguments['additionalAttributes'];
         $iteration = $this->arguments['iteration'];
-        switch ($field->getType()) {
-            case 'check':
-                // multiple field radiobuttons
-            case 'radio':
-                $additionalAttributes = $this->addMandatoryAttributesForMultipleFields(
-                    $additionalAttributes,
-                    $field,
-                    $iteration
-                );
-                break;
-            default:
-                $additionalAttributes = $this->addMandatoryAttributes($additionalAttributes, $field);
-        }
+        $additionalAttributes = match ($field->getType()) {
+            'check', 'radio' => $this->addMandatoryAttributesForMultipleFields(
+                $additionalAttributes,
+                $field,
+                $iteration
+            ),
+            default => $this->addMandatoryAttributes($additionalAttributes, $field),
+        };
         $additionalAttributes = $this->addValidationAttributesForInputOrTextarea($additionalAttributes, $field);
         $signalArguments = [&$additionalAttributes, $field, $iteration, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $additionalAttributes;
     }
 
     /**
      * Set different mandatory attributes for checkboxes and radiobuttons
      *
-     * @param array $additionalAttributes
-     * @param Field $field
-     * @param array $iteration
      * @return array
      * @throws Exception
      */
@@ -116,8 +108,6 @@ class ValidationDataAttributeViewHelper extends AbstractValidationViewHelper
     /**
      * Add validation attributes for input or textarea field types.
      *
-     * @param array $additionalAttributes
-     * @param Field $field
      * @return array
      * @throws Exception
      */
@@ -132,8 +122,6 @@ class ValidationDataAttributeViewHelper extends AbstractValidationViewHelper
     /**
      * Add validation attributes
      *
-     * @param array $additionalAttributes
-     * @param Field $field
      * @return array
      */
     protected function addValidationAttributes(array $additionalAttributes, Field $field): array
@@ -354,9 +342,6 @@ class ValidationDataAttributeViewHelper extends AbstractValidationViewHelper
     /**
      * Add multiple attribute to bundle checkboxes for JS validation framework
      *
-     * @param array $additionalAttributes
-     * @param Field $field
-     * @param array $iteration
      * @return array
      * @throws Exception
      */
@@ -376,8 +361,6 @@ class ValidationDataAttributeViewHelper extends AbstractValidationViewHelper
     }
 
     /**
-     * @param array $additionalAttributes
-     * @param Field $field
      * @return array
      * @throws Exception
      */

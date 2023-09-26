@@ -261,7 +261,6 @@ class PrefillFieldViewHelperTest extends UnitTestCase
     }
 
     /**
-     * @param array $configuration
      * @param string $marker
      * @param string $expectedResult
      * @return void

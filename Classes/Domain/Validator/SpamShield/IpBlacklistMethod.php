@@ -43,7 +43,6 @@ class IpBlacklistMethod extends AbstractMethod
     /**
      * reduce ; and "\n" to ,
      *
-     * @param string $string
      * @return string
      */
     protected function reduceDelimiters(string $string): string

@@ -167,7 +167,6 @@ class FrontendUtility
     /**
      * Get Property from currently logged in fe_user
      *
-     * @param string $propertyName
      * @return string
      */
     public static function getPropertyFromLoggedInFrontendUser(string $propertyName = 'uid'): string
@@ -182,7 +181,6 @@ class FrontendUtility
     /**
      * Read domain from uri
      *
-     * @param string $uri
      * @return string
      */
     public static function getDomainFromUri(string $uri): string
@@ -210,7 +208,7 @@ class FrontendUtility
             ->getBody()
             ->getContents();
         if ($json) {
-            $geoInfo = json_decode($json);
+            $geoInfo = json_decode($json, null, 512, JSON_THROW_ON_ERROR);
             if (!empty($geoInfo->country)) {
                 $country = $geoInfo->country;
             }
@@ -258,7 +256,6 @@ class FrontendUtility
     }
 
     /**
-     * @param string $key
      * @return bool
      */
     public static function isArgumentExisting(string $key): bool
@@ -271,7 +268,6 @@ class FrontendUtility
      * and on the other hand some POST params are still available when a form is submitted, we need a function that
      * merges both sources
      *
-     * @param string $key
      * @return array
      */
     public static function getArguments(string $key = 'tx_powermail_pi1'): array
@@ -283,7 +279,6 @@ class FrontendUtility
     }
 
     /**
-     * @param string $key
      * @return array
      */
     protected static function getArgumentsFromGetOrPostRequest(string $key): array
@@ -292,7 +287,6 @@ class FrontendUtility
     }
 
     /**
-     * @param string $key
      * @return array
      */
     protected static function getArgumentsFromTyposcriptFrontendController(string $key): array

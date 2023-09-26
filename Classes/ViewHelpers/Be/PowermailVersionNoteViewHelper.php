@@ -15,11 +15,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class PowermailVersionNoteViewHelper extends AbstractViewHelper
 {
-    const TABLE_NAME = 'tx_extensionmanager_domain_model_extension';
-    const EXTENSION_VERSION_NOINFORMATION = 0;
-    const EXTENSION_VERSION_OK = 1;
-    const EXTENSION_VERSION_SECURITYNOTE = 2;
-    const EXTENSION_VERSION_UPDATE = 3;
+    final public const TABLE_NAME = 'tx_extensionmanager_domain_model_extension';
+    final public const EXTENSION_VERSION_NOINFORMATION = 0;
+    final public const EXTENSION_VERSION_OK = 1;
+    final public const EXTENSION_VERSION_SECURITYNOTE = 2;
+    final public const EXTENSION_VERSION_UPDATE = 3;
 
     /**
      * @var int
@@ -183,7 +183,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param int $status
      * @return void
      */
     public function setStatus(int $status): void
@@ -200,7 +199,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param string $version
      * @return void
      */
     public function setVersion(string $version): void
@@ -217,7 +215,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param bool $checkFromDatabase
      * @return void
      */
     public function setCheckFromDatabase(bool $checkFromDatabase): void
@@ -234,7 +231,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param bool $extensionTableExists
      * @return void
      */
     public function setExtensionTableExists(bool $extensionTableExists): void
@@ -251,7 +247,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param bool $isCurrentVersionUnsecure
      * @return void
      */
     public function setIsCurrentVersionUnsecure(bool $isCurrentVersionUnsecure): void
@@ -268,7 +263,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param bool $isNewerVersionAvailable
      * @return void
      */
     public function setIsNewerVersionAvailable(bool $isNewerVersionAvailable): void
@@ -285,7 +279,6 @@ class PowermailVersionNoteViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param bool $currentVersionInExtensionTableExists
      * @return void
      */
     public function setCurrentVersionInExtensionTableExists(bool $currentVersionInExtensionTableExists): void

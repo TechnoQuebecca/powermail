@@ -19,13 +19,9 @@ class DataProcessorRunner
     /**
      * @var string
      */
-    protected string $interface = 'In2code\Powermail\DataProcessor\DataProcessorInterface';
+    protected string $interface = \In2code\Powermail\DataProcessor\DataProcessorInterface::class;
 
     /**
-     * @param Mail $mail
-     * @param string $actionMethodName
-     * @param array $settings
-     * @param ContentObjectRenderer $contentObject
      * @throws Exception
      */
     public function callDataProcessors(
@@ -40,7 +36,7 @@ class DataProcessorRunner
             if (!class_exists($class)) {
                 throw new ClassDoesNotExistException(
                     'Data processor class ' . $class . ' does not exists - check if file was loaded correctly',
-                    1578601123
+                    1_578_601_123
                 );
             }
             if (is_subclass_of($class, $this->interface)) {
@@ -63,7 +59,7 @@ class DataProcessorRunner
             } else {
                 throw new InterfaceNotImplementedException(
                     'DataProcessor does not implement ' . $this->interface,
-                    1578601128
+                    1_578_601_128
                 );
             }
         }
@@ -73,7 +69,6 @@ class DataProcessorRunner
      * Call methods in dataProcessor class
      *      *DataProcessor()
      *
-     * @param AbstractDataProcessor $dataProcessor
      * @return void
      */
     protected function callDataProcessorMethods(AbstractDataProcessor $dataProcessor): void
@@ -91,8 +86,6 @@ class DataProcessorRunner
     /**
      * Call initializeDataProcessorMethods like "initializeUploadDataProcessor()"
      *
-     * @param AbstractDataProcessor $dataProcessor
-     * @param string $finisherMethod
      * @return void
      */
     protected function callInitializeDataProcessorMethod(
@@ -107,7 +100,6 @@ class DataProcessorRunner
     /**
      * Get all finisher classes from typoscript and sort them
      *
-     * @param array $settings
      * @return array
      */
     protected function getDataProcessorClasses(array $settings): array
@@ -118,7 +110,6 @@ class DataProcessorRunner
     }
 
     /**
-     * @param array $dpSettings
      * @return void
      */
     protected function requireFile(array $dpSettings): void

@@ -18,7 +18,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Form extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_powermail_domain_model_form';
+    final public const TABLE_NAME = 'tx_powermail_domain_model_form';
 
     /**
      * @var string
@@ -58,7 +58,6 @@ class Form extends AbstractEntity
     }
 
     /**
-     * @param string $title
      * @return void
      */
     public function setTitle(string $title): void
@@ -75,7 +74,6 @@ class Form extends AbstractEntity
     }
 
     /**
-     * @param string $css
      * @return void
      */
     public function setCss(string $css): void
@@ -107,7 +105,6 @@ class Form extends AbstractEntity
     }
 
     /**
-     * @param ObjectStorage $pages
      * @return void
      */
     public function setPages(ObjectStorage $pages): void
@@ -149,9 +146,7 @@ class Form extends AbstractEntity
     {
         if (empty($this->pagesByTitle)) {
             $pagesArray = $this->getPages()->toArray();
-            $this->pagesByTitle = array_combine(array_map(function (Page $page) {
-                return StringUtility::cleanString($page->getTitle());
-            }, $pagesArray), $pagesArray);
+            $this->pagesByTitle = array_combine(array_map(fn(Page $page) => StringUtility::cleanString($page->getTitle()), $pagesArray), $pagesArray);
         }
         return $this->pagesByTitle;
     }
@@ -171,9 +166,7 @@ class Form extends AbstractEntity
     {
         if (empty($this->pagesByUid)) {
             $pagesArray = $this->getPages()->toArray();
-            $this->pagesByUid = array_combine(array_map(function (Page $page) {
-                return $page->getUid();
-            }, $pagesArray), $pagesArray);
+            $this->pagesByUid = array_combine(array_map(fn(Page $page) => $page->getUid(), $pagesArray), $pagesArray);
         }
         return $this->pagesByUid;
     }
@@ -202,8 +195,6 @@ class Form extends AbstractEntity
     }
 
     /**
-     * @param Field $field
-     * @param string $fieldType
      * @return bool
      * @throws DeprecatedException
      */

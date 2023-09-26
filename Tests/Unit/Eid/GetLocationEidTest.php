@@ -46,9 +46,6 @@ class GetLocationEidTest extends UnitTestCase
     }
 
     /**
-     * @param float $latitude
-     * @param float $longitude
-     * @param string $expectedResult
      * @return void
      * @SuppressWarnings(PHPMD.Superglobals)
      * @dataProvider mainDataProvider

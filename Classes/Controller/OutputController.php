@@ -64,7 +64,6 @@ class OutputController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @noinspection PhpUnused
      * @throws Exception
@@ -83,7 +82,6 @@ class OutputController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @noinspection PhpUnused
      * @throws Exception
@@ -132,7 +130,6 @@ class OutputController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
      * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\InputValidator", param="mail")
      * @return void
      * @throws StopActionException
@@ -172,7 +169,6 @@ class OutputController extends AbstractController
     }
 
     /**
-     * @param Mail $mail
      * @return void
      * @throws IllegalObjectTypeException
      * @noinspection PhpUnused
@@ -265,7 +261,6 @@ class OutputController extends AbstractController
     /**
      * Get fieldlist from list or from database
      *
-     * @param string $list
      * @return array
      * @throws Exception
      */
@@ -303,8 +298,6 @@ class OutputController extends AbstractController
     /**
      * Add parameters to piVars from TypoScript
      *
-     * @param array $pluginVariables
-     * @param array $parameters
      * @return void
      */
     protected function prepareFilterPluginVariables(array &$pluginVariables, array $parameters): void

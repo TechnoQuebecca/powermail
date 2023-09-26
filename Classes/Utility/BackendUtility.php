@@ -58,9 +58,6 @@ class BackendUtility
     /**
      * Create an URI to edit any record
      *
-     * @param string $tableName
-     * @param int $identifier
-     * @param bool $addReturnUrl
      * @return string
      * @throws RouteNotFoundException
      */
@@ -82,9 +79,7 @@ class BackendUtility
     /**
      * Create an URI to add a new record
      *
-     * @param string $tableName
      * @param int $pageIdentifier where to save the new record
-     * @param bool $addReturnUrl
      * @return string
      * @throws RouteNotFoundException
      */
@@ -115,8 +110,6 @@ class BackendUtility
     }
 
     /**
-     * @param string $route
-     * @param array $parameters
      * @return string
      * @throws RouteNotFoundException
      */
@@ -150,7 +143,6 @@ class BackendUtility
     /**
      * Get all GET/POST params without module name and token
      *
-     * @param array $getParameters
      * @return array
      */
     public static function getCurrentParameters(array $getParameters = []): array
@@ -189,7 +181,7 @@ class BackendUtility
         if (empty($returnUrl)) {
             $returnUrl = GeneralUtility::_GP('returnUrl') ?: '';
         }
-        $urlParts = parse_url($returnUrl);
+        $urlParts = parse_url((string) $returnUrl);
         parse_str((string)$urlParts['query'], $queryParts);
         if (array_key_exists('id', $queryParts)) {
             return (int)$queryParts['id'];
@@ -200,16 +192,14 @@ class BackendUtility
     /**
      * Returns the Page TSconfig for page with id, $id
      *
-     * @param int $pid
      * @param ?array $rootLine
-     * @param bool $returnPartArray
      * @return array Page TSconfig
      * @throws DeprecatedException
      */
     public static function getPagesTSconfig(int $pid, array $rootLine = null, bool $returnPartArray = false): array
     {
         if ($rootLine !== null || $returnPartArray === true) {
-            throw new DeprecatedException('arguments not supported any more in powermail', 1578947408);
+            throw new DeprecatedException('arguments not supported any more in powermail', 1_578_947_408);
         }
         $array = [];
         try {
@@ -225,7 +215,6 @@ class BackendUtility
      * Filter a pid array with only the pages that are allowed to be viewed from the backend user.
      * If the backend user is an admin, show all of course - so ignore this filter.
      *
-     * @param array $pids
      * @return array
      */
     public static function filterPagesForAccess(array $pids): array

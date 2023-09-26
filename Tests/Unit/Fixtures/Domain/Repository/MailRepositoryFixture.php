@@ -28,6 +28,6 @@ class MailRepositoryFixture extends MailRepository
     public function add($object)
     {
         unset($object);
-        throw new \UnexpectedValueException('Object stored', 1515088469408);
+        throw new \UnexpectedValueException('Object stored', 1_515_088_469_408);
     }
 }

@@ -60,8 +60,6 @@ abstract class AbstractValidationViewHelper extends AbstractViewHelper
     /**
      * Set mandatory attributes
      *
-     * @param array $additionalAttributes
-     * @param Field|null $field
      * @return array
      */
     protected function addMandatoryAttributes(array $additionalAttributes, ?Field $field): array
@@ -96,8 +94,6 @@ abstract class AbstractValidationViewHelper extends AbstractViewHelper
     /**
      * Define where to show errors in markup
      *
-     * @param array $additionalAttributes
-     * @param Field $field
      * @return array
      */
     protected function addErrorContainer(array $additionalAttributes, Field $field): array
@@ -110,8 +106,6 @@ abstract class AbstractValidationViewHelper extends AbstractViewHelper
     /**
      * Define where to set the error class in markup
      *
-     * @param array $additionalAttributes
-     * @param Field $field
      * @return array
      */
     protected function addClassHandler(array $additionalAttributes, Field $field): array

@@ -22,22 +22,12 @@ class SendReceiverMailPreflight
      */
     protected SendMailService $sendMailService;
 
-    /**
-     * @var array
-     */
-    protected array $settings = [];
-
-    /**
-     * @param array $settings
-     */
-    public function __construct(array $settings)
+    public function __construct(protected array $settings)
     {
-        $this->settings = $settings;
         $this->sendMailService = GeneralUtility::makeInstance(SendMailService::class);
     }
 
     /**
-     * @param Mail $mail
      * @param string|null $hash
      * @return bool
      * @throws InvalidConfigurationTypeException

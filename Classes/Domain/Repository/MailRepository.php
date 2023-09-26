@@ -37,7 +37,6 @@ class MailRepository extends AbstractRepository
     /**
      * Find all mails in given PID (BE List)
      *
-     * @param int $pid
      * @param array $settings TypoScript Config Array
      * @param array $piVars Plugin Variables
      * @return QueryResultInterface
@@ -60,8 +59,6 @@ class MailRepository extends AbstractRepository
     /**
      * Workarround for "group by uid"
      *
-     * @param QueryResultInterface $result
-     * @param QueryInterface $query
      * @return QueryResultInterface
      * @throws InvalidQueryExceptionAlias
      */
@@ -83,7 +80,6 @@ class MailRepository extends AbstractRepository
     /**
      * Find first mail in given PID
      *
-     * @param int $pid
      * @return Mail|null
      */
     public function findFirstInPid(int $pid = 0): ?Mail
@@ -127,10 +123,6 @@ class MailRepository extends AbstractRepository
     }
 
     /**
-     * @param string $marker
-     * @param string $value
-     * @param Form $form
-     * @param int $pageUid
      * @return QueryResultInterface
      * @throws Exception
      * @throws InvalidQueryExceptionAlias
@@ -152,8 +144,6 @@ class MailRepository extends AbstractRepository
     }
 
     /**
-     * @param array $settings
-     * @param array $piVars
      * @return QueryResultInterface
      * @throws InvalidQueryExceptionAlias
      */
@@ -219,7 +209,7 @@ class MailRepository extends AbstractRepository
             if (count($filter) > 0) {
                 // switch between AND and OR
                 if (!empty($settings['search']['logicalRelation']) &&
-                    strtolower($settings['search']['logicalRelation']) === 'and') {
+                    strtolower((string) $settings['search']['logicalRelation']) === 'and') {
                     $and[] = $query->logicalAnd($filter);
                 } else {
                     $and[] = $query->logicalOr($filter);
@@ -245,7 +235,6 @@ class MailRepository extends AbstractRepository
     /**
      * Get all form uids from all mails stored on a given page
      *
-     * @param int $pageUid
      * @return array
      */
     public function findGroupedFormUidsToGivenPageUid(int $pageUid = 0): array
@@ -302,8 +291,6 @@ class MailRepository extends AbstractRepository
     /**
      * Find the latest three mails by given form uid
      *
-     * @param int $formUid
-     * @param int $limit
      * @return QueryResultInterface
      */
     public function findLatestByForm(int $formUid, int $limit = 3): QueryResultInterface
@@ -319,7 +306,6 @@ class MailRepository extends AbstractRepository
      * Generate a new array with labels
      *        label_firstname => Firstname
      *
-     * @param Mail $mail
      * @return array
      */
     public function getLabelsWithMarkersFromMail(Mail $mail): array
@@ -337,8 +323,6 @@ class MailRepository extends AbstractRepository
      * Generate a new array with markers and their values
      *        firstname => value
      *
-     * @param Mail $mail
-     * @param bool $htmlSpecialChars
      * @return array
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
@@ -362,15 +346,13 @@ class MailRepository extends AbstractRepository
         }
 
         $signalArguments = [&$variables, $mail, $this];
-        $this->signalDispatch(__CLASS__, __FUNCTION__, $signalArguments);
+        $this->signalDispatch(self::class, __FUNCTION__, $signalArguments);
         return $variables;
     }
 
     /**
      * Returns senderemail from a couple of arguments
      *
-     * @param Mail $mail
-     * @param string $default
      * @return string Sender Email
      */
     public function getSenderMailFromArguments(Mail $mail, string $default = ''): string
@@ -379,9 +361,9 @@ class MailRepository extends AbstractRepository
         foreach ($mail->getAnswers() as $answer) {
             if ($answer->getField() !== null &&
                 $answer->getField()->isSenderEmail() &&
-                GeneralUtility::validEmail(trim($answer->getValue()))
+                GeneralUtility::validEmail(trim((string) $answer->getValue()))
             ) {
-                $email = trim($answer->getValue());
+                $email = trim((string) $answer->getValue());
                 break;
             }
         }
@@ -396,7 +378,6 @@ class MailRepository extends AbstractRepository
      *
      * @param Mail $mail Given Params
      * @param string|array $default String as default or cObject array
-     * @param string $glue
      * @return string Sender Name
      */
     public function getSenderNameFromArguments(Mail $mail, $default = null, string $glue = ' '): string
@@ -441,9 +422,6 @@ class MailRepository extends AbstractRepository
      *            'property' => 'asc'
      *        )
      *
-     * @param string $sortby
-     * @param string $order
-     * @param array $piVars
      * @return array
      */
     protected function getSorting(string $sortby, string $order, array $piVars = []): array
@@ -464,7 +442,6 @@ class MailRepository extends AbstractRepository
     /**
      * Get sort order (ascending or descending) by given string
      *
-     * @param string $sortOrderString
      * @return string
      */
     protected function getSortOrderByString(string $sortOrderString): string
@@ -479,7 +456,6 @@ class MailRepository extends AbstractRepository
     /**
      * Make in impossible to hack a sql string if we just remove as much unneeded characters as possible
      *
-     * @param string $string
      * @return string
      */
     protected function cleanStringForQuery(string $string): string
@@ -500,7 +476,6 @@ class MailRepository extends AbstractRepository
     /**
      * Get sender default email address
      *
-     * @param string $default
      * @return string
      */
     protected function getSenderMailFromDefault(string $default): string
@@ -517,9 +492,6 @@ class MailRepository extends AbstractRepository
     }
 
     /**
-     * @param array $piVars
-     * @param QueryInterface $query
-     * @param int $pid
      * @return array
      * @throws InvalidQueryExceptionAlias
      */
@@ -545,9 +517,9 @@ class MailRepository extends AbstractRepository
                     } elseif ($field === 'form' && !empty($value)) {
                         $and[] = $query->equals('form', $value);
                     } elseif ($field === 'start' && !empty($value)) {
-                        $and[] = $query->greaterThan('crdate', strtotime($value));
+                        $and[] = $query->greaterThan('crdate', strtotime((string) $value));
                     } elseif ($field === 'stop' && !empty($value)) {
-                        $and[] = $query->lessThan('crdate', strtotime($value));
+                        $and[] = $query->lessThan('crdate', strtotime((string) $value));
                     } elseif ($field === 'hidden' && !empty($value)) {
                         $and[] = $query->equals($field, ($value - 1));
                     } elseif (!empty($value)) {
@@ -570,7 +542,6 @@ class MailRepository extends AbstractRepository
     }
 
     /**
-     * @param int $mailIdentifier
      * @return void
      * @throws DBALException
      */

@@ -34,7 +34,7 @@ class ImplodeFieldViewHelper extends AbstractViewHelper
         $separator = $this->arguments['separator'];
         $htmlSpecialChars = $this->arguments['htmlSpecialChars'];
         $string = '';
-        if (count($objects) === 0 || is_string($objects)) {
+        if ((is_countable($objects) ? count($objects) : 0) === 0 || is_string($objects)) {
             return $string;
         }
 
@@ -42,8 +42,8 @@ class ImplodeFieldViewHelper extends AbstractViewHelper
             $string = implode($separator, $objects);
         } else {
             foreach ($objects as $object) {
-                if (method_exists($object, 'get' . ucfirst($field))) {
-                    $tempString = $object->{'get' . ucfirst($field)}();
+                if (method_exists($object, 'get' . ucfirst((string) $field))) {
+                    $tempString = $object->{'get' . ucfirst((string) $field)}();
                     if (method_exists(htmlentities((string)$tempString), 'getUid')) {
                         $tempString = $tempString->getUid();
                     }
@@ -51,7 +51,7 @@ class ImplodeFieldViewHelper extends AbstractViewHelper
                     $string .= $separator;
                 }
             }
-            $string = substr($string, 0, (-1 * strlen($separator)));
+            $string = substr($string, 0, (-1 * strlen((string) $separator)));
         }
         if ($htmlSpecialChars) {
             $string = htmlspecialchars($string);

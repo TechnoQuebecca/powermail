@@ -12,11 +12,11 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Answer extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_powermail_domain_model_answer';
-    const VALUE_TYPE_TEXT = 0;
-    const VALUE_TYPE_ARRAY = 1;
-    const VALUE_TYPE_DATE = 2;
-    const VALUE_TYPE_UPLOAD = 3;
+    final public const TABLE_NAME = 'tx_powermail_domain_model_answer';
+    final public const VALUE_TYPE_TEXT = 0;
+    final public const VALUE_TYPE_ARRAY = 1;
+    final public const VALUE_TYPE_DATE = 2;
+    final public const VALUE_TYPE_UPLOAD = 3;
 
     /**
      * @var string
@@ -48,9 +48,9 @@ class Answer extends AbstractEntity
      * All mails and answers should be stored with sys_language_uid=-1 to get those values from persisted objects
      * in fe requests in every language (e.g. for optin mails, etc...)
      *
-     * @var int
+     * @var int|null
      */
-    protected $_languageUid = -1;
+    protected ?int $_languageUid = -1;
 
     /**
      * @return mixed $value
@@ -63,7 +63,7 @@ class Answer extends AbstractEntity
         if (ArrayUtility::isJsonArray((string)$this->value)) {
             // only if type multivalue or upload
             if ($this->getValueType() === self::VALUE_TYPE_ARRAY || $this->getValueType() === self::VALUE_TYPE_UPLOAD) {
-                $value = json_decode($value, true);
+                $value = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
             }
         }
 
@@ -84,10 +84,9 @@ class Answer extends AbstractEntity
     /**
      * Sets the value
      *
-     * @param mixed $value
      * @return Answer
      */
-    public function setValue($value): Answer
+    public function setValue(mixed $value): Answer
     {
         $value = $this->convertToJson($value);
         $value = $this->convertToTimestamp($value);
@@ -99,7 +98,6 @@ class Answer extends AbstractEntity
      * Returns value and enforces a string
      *        An array will be returned as commaseparated string
      *
-     * @param string $glue
      * @return string
      */
     public function getStringValue(string $glue = ', '): string
@@ -125,7 +123,6 @@ class Answer extends AbstractEntity
     }
 
     /**
-     * @param int $valueType
      * @return Answer
      */
     public function setValueType(int $valueType): Answer
@@ -159,7 +156,6 @@ class Answer extends AbstractEntity
     }
 
     /**
-     * @param Mail $mail
      * @return Answer
      */
     public function setMail(Mail $mail): Answer
@@ -177,7 +173,6 @@ class Answer extends AbstractEntity
     }
 
     /**
-     * @param Field $field
      * @return Answer
      */
     public function setField(Field $field): Answer
@@ -229,7 +224,7 @@ class Answer extends AbstractEntity
     protected function convertToJson($value): string
     {
         if (is_array($value)) {
-            $value = json_encode($value);
+            $value = json_encode($value, JSON_THROW_ON_ERROR);
         }
         return (string)$value;
     }
@@ -237,7 +232,6 @@ class Answer extends AbstractEntity
     /**
      * Convert string to timestamp for date fields (datepicker)
      *
-     * @param string $value
      * @return int|string
      */
     protected function convertToTimestamp(string $value)
@@ -260,7 +254,7 @@ class Answer extends AbstractEntity
                 try {
                     // fallback html5 date field - always Y-m-d H:i
                     $date = new \DateTime($value);
-                } catch (\Exception $e) {
+                } catch (\Exception) {
                     // clean value if string could not be converted
                     $value = '';
                 }

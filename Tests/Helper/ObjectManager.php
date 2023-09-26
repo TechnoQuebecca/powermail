@@ -10,7 +10,6 @@ use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
 class ObjectManager implements ObjectManagerInterface
 {
     /**
-     * @param string $objectName
      * @return bool
      */
     public function isRegistered(string $objectName): bool
@@ -20,18 +19,15 @@ class ObjectManager implements ObjectManagerInterface
     }
 
     /**
-     * @param string $objectName
-     * @param mixed ...$constructorArguments
      * @return object
      */
-    public function get(string $objectName, ...$constructorArguments): object
+    public function get(string $objectName, mixed ...$constructorArguments): object
     {
         unset($constructorArguments);
         return new $objectName();
     }
 
     /**
-     * @param string $objectName
      * @return mixed
      */
     public function getEmptyObject(string $objectName): object
@@ -40,7 +36,6 @@ class ObjectManager implements ObjectManagerInterface
     }
 
     /**
-     * @param string $objectName
      * @return int
      */
     public function getScope(string $objectName): int

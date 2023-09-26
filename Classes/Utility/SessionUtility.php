@@ -38,7 +38,6 @@ class SessionUtility
      * Save current timestamp to session
      *
      * @param ?Form $form
-     * @param array $settings
      * @return void
      */
     public static function saveFormStartInSession(array $settings, Form $form = null): void
@@ -56,7 +55,6 @@ class SessionUtility
      * Read form rendering timestamp from session
      *
      * @param int $formUid Form UID
-     * @param array $settings
      * @return int Timestamp
      */
     public static function getFormStartFromSession(int $formUid, array $settings): int
@@ -85,7 +83,6 @@ class SessionUtility
      * @param int $language Frontend Language Uid
      * @param int $pid Page Id
      * @param bool $mobileDevice Is mobile device?
-     * @param array $settings
      * @return void
      */
     public static function storeMarketingInformation(
@@ -104,7 +101,7 @@ class SessionUtility
             $marketingInfo['pageFunnel'][] = $pid;
 
             // clean pagefunnel if has more than 256 entries
-            if (count($marketingInfo['pageFunnel']) > 256) {
+            if ((is_countable($marketingInfo['pageFunnel']) ? count($marketingInfo['pageFunnel']) : 0) > 256) {
                 $marketingInfo['pageFunnel'] = [$pid];
             }
         }
@@ -130,7 +127,6 @@ class SessionUtility
     /**
      * Save values to session for prefilling on upcoming form renderings
      *
-     * @param Mail $mail
      * @param array $settings Settings array
      * @return void
      * @throws Exception
@@ -193,8 +189,6 @@ class SessionUtility
     }
 
     /**
-     * @param string $result
-     * @param int $fieldUid
      * @return void
      */
     public static function setCaptchaSession(string $result, int $fieldUid): void
@@ -203,7 +197,6 @@ class SessionUtility
     }
 
     /**
-     * @param int $fieldUid
      * @return int
      */
     public static function getCaptchaSession(int $fieldUid): int
@@ -219,7 +212,6 @@ class SessionUtility
      * Check if spamshield is turned on generally
      * and if ther is a sessioncheck agains spamshield enabled
      *
-     * @param array $settings
      * @return bool
      */
     protected static function sessionCheckEnabled(array $settings): bool
@@ -258,11 +250,6 @@ class SessionUtility
     }
 
     /**
-     * @param string $referer
-     * @param int $language
-     * @param int $pid
-     * @param bool $mobileDevice
-     * @param array $settings
      * @return array
      */
     protected static function initMarketingInfo(

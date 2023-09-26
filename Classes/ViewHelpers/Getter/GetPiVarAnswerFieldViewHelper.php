@@ -29,7 +29,7 @@ class GetPiVarAnswerFieldViewHelper extends AbstractViewHelper
         $result = '';
         $piVars = $this->arguments['piVars'];
         if (!empty($piVars['filter']['answer'][$this->getFieldUid()])) {
-            $result = htmlspecialchars($piVars['filter']['answer'][$this->getFieldUid()]);
+            $result = htmlspecialchars((string) $piVars['filter']['answer'][$this->getFieldUid()]);
         }
         return $result;
     }

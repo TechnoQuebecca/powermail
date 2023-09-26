@@ -13,11 +13,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 class RedirectUriService
 {
     /**
-     * @var ContentObjectRenderer
-     */
-    protected ContentObjectRenderer $contentObject;
-
-    /**
      * Get redirect URI from FlexForm or TypoScript
      *
      * @return string|null
@@ -107,11 +102,7 @@ class RedirectUriService
         return null;
     }
 
-    /**
-     * @param ContentObjectRenderer $contentObject
-     */
-    public function __construct(ContentObjectRenderer $contentObject)
+    public function __construct(protected ContentObjectRenderer $contentObject)
     {
-        $this->contentObject = $contentObject;
     }
 }

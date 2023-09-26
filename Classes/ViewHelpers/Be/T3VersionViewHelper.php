@@ -29,7 +29,7 @@ class T3VersionViewHelper extends AbstractViewHelper
             $config = current($EM_CONF);
             $versionString = $config['constraints']['depends']['typo3'];
 
-            $versions = explode('-', $versionString);
+            $versions = explode('-', (string) $versionString);
 
             return $this->isAboveMinVersion($versions[0]) && $this->isBelowMaxVersion($versions[1]);
         }
@@ -39,7 +39,6 @@ class T3VersionViewHelper extends AbstractViewHelper
     /**
      * Is current TYPO3 newer than the minium allowed version
      *
-     * @param string $minTypo3Version
      * @return bool
      */
     protected function isAboveMinVersion(string $minTypo3Version): bool
@@ -50,7 +49,6 @@ class T3VersionViewHelper extends AbstractViewHelper
     /**
      * Is current TYPO3 newer than the minium allowed version
      *
-     * @param string $maxTypo3Version
      * @return bool
      */
     protected function isBelowMaxVersion(string $maxTypo3Version): bool

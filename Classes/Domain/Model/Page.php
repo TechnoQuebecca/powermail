@@ -16,7 +16,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Page extends AbstractEntity
 {
-    const TABLE_NAME = 'tx_powermail_domain_model_page';
+    final public const TABLE_NAME = 'tx_powermail_domain_model_page';
 
     /**
      * @var string
@@ -82,7 +82,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param string $title
      * @return void
      */
     public function setTitle(string $title): void
@@ -99,7 +98,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param string $css
      * @return void
      */
     public function setCss(string $css): void
@@ -108,7 +106,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param Field $field
      * @return void
      */
     public function addField(Field $field): void
@@ -117,7 +114,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param Field $fieldToRemove
      * @return void
      */
     public function removeField(Field $fieldToRemove): void
@@ -134,7 +130,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param ObjectStorage $fields
      * @return void
      */
     public function setFields(ObjectStorage $fields): void
@@ -151,7 +146,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param int $sorting
      * @return void
      */
     public function setSorting(int $sorting): void
@@ -160,7 +154,6 @@ class Page extends AbstractEntity
     }
 
     /**
-     * @param Form $form
      * @return void
      */
     public function setForm(Form $form): void
@@ -196,9 +189,7 @@ class Page extends AbstractEntity
     {
         if (empty($this->fieldsByFieldMarker)) {
             $fieldsArray = $this->getFields()->toArray();
-            $this->fieldsByFieldMarker = array_combine(array_map(function (Field $field) {
-                return $field->getMarker();
-            }, $fieldsArray), $fieldsArray);
+            $this->fieldsByFieldMarker = array_combine(array_map(fn(Field $field) => $field->getMarker(), $fieldsArray), $fieldsArray);
         }
         return $this->fieldsByFieldMarker;
     }
@@ -216,9 +207,7 @@ class Page extends AbstractEntity
     {
         if (empty($this->fieldsByFieldUid)) {
             $fieldsArray = $this->getFields()->toArray();
-            $this->fieldsByFieldUid = array_combine(array_map(function (Field $field) {
-                return $field->getUid();
-            }, $fieldsArray), $fieldsArray);
+            $this->fieldsByFieldUid = array_combine(array_map(fn(Field $field) => $field->getUid(), $fieldsArray), $fieldsArray);
         }
         return $this->fieldsByFieldUid;
     }
