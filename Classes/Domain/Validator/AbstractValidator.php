@@ -72,9 +72,9 @@ abstract class AbstractValidator extends ExtbaseAbstractValidator implements Val
      * @param Mail $mail
      * @return bool
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
-        return true;
+        return;
     }
 
     /**

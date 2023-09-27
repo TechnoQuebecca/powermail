@@ -21,10 +21,10 @@ class PasswordValidator extends AbstractValidator
      * @param Mail $mail
      * @return bool
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
         if (!$this->formHasPassword($mail->getForm()) || $this->ignoreValidationIfConfirmation()) {
-            return true;
+            return;
         }
 
         foreach ($mail->getAnswers() as $answer) {
@@ -35,8 +35,6 @@ class PasswordValidator extends AbstractValidator
                 $this->setErrorAndMessage($answer->getField(), 'password');
             }
         }
-
-        return $this->isValidState();
     }
 
     /**

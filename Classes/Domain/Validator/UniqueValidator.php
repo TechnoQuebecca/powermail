@@ -27,7 +27,7 @@ class UniqueValidator extends AbstractValidator
      * @throws ExtensionConfigurationPathDoesNotExistException
      * @throws InvalidQueryException
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
         if (!empty($this->settings['validation']['unique'])) {
             foreach ($this->settings['validation']['unique'] as $marker => $amount) {
@@ -52,7 +52,7 @@ class UniqueValidator extends AbstractValidator
                 }
             }
         }
-        return $this->isValidState();
+
     }
 
     /**

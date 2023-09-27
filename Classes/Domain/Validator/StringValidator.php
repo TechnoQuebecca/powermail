@@ -159,7 +159,7 @@ class StringValidator extends AbstractValidator
      * @param string $value
      * @return void
      */
-    public function isValid($value)
+    public function isValid(mixed $value) : void
     {
         parent::isValid($value);
     }

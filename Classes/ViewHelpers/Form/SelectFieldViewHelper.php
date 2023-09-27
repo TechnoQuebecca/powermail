@@ -21,7 +21,7 @@ class SelectFieldViewHelper extends SelectViewHelper
      * @return string rendered tag.
      * @api
      */
-    public function render()
+    public function render(): string
     {
         $this->originalOptions = $this->arguments['options'];
         $this->setOptions();
@@ -64,7 +64,7 @@ class SelectFieldViewHelper extends SelectViewHelper
      * @param bool $isSelected specifies wether or not to add selected attribute
      * @return string the rendered option tag
      */
-    protected function renderOptionTag($value, $label, $isSelected = false)
+    protected function renderOptionTag($value, $label, $isSelected = false): string
     {
         unset($isSelected);
         return parent::renderOptionTag(

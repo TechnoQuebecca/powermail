@@ -16,7 +16,7 @@ class MultiUploadViewHelper extends UploadViewHelper
      * @return void
      * @api
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
     }

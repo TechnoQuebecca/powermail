@@ -28,7 +28,7 @@ class UploadValidator extends AbstractValidator
      * @throws InvalidSlotReturnException
      * @throws Exception
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
         /** @var UploadService $uploadService */
         $uploadService = GeneralUtility::makeInstance(UploadService::class);
@@ -47,7 +47,7 @@ class UploadValidator extends AbstractValidator
                 $file->setValid(false);
             }
         }
-        return $this->isValidState();
+
     }
 
     /**

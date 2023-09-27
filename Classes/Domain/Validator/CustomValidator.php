@@ -25,9 +25,8 @@ class CustomValidator extends StringValidator
      * @throws InvalidSlotReturnException
      * @throws Exception
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
         $this->signalDispatch(self::class, __FUNCTION__, [$mail, $this]);
-        return $this->isValidState();
     }
 }

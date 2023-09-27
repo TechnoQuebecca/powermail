@@ -13,7 +13,7 @@ class AdvancedSelectViewHelper extends SelectViewHelper
     /**
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('defaultOption', 'string', 'value to prepend', false);

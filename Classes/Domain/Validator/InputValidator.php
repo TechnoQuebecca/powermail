@@ -46,11 +46,11 @@ class InputValidator extends StringValidator
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
      */
-    public function isValid($mail): bool
+    public function isValid(mixed $mail): void
     {
         // stop validation if it's turned off
         if ($this->isServerValidationEnabled() === false) {
-            return true;
+            return;
         }
 
         // iterate through all fields of current form
@@ -62,7 +62,7 @@ class InputValidator extends StringValidator
             }
         }
 
-        return $this->isValidState();
+
     }
 
     /**

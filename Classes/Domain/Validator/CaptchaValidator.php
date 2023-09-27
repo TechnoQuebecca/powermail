@@ -45,7 +45,7 @@ class CaptchaValidator extends AbstractValidator
      * @throws Exception
      * @throws ExceptionCore
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
         if ($this->formHasCaptcha($mail->getForm())) {
             foreach ($mail->getAnswers() as $answer) {
@@ -72,8 +72,6 @@ class CaptchaValidator extends AbstractValidator
                 $this->setValidState(false);
             }
         }
-
-        return $this->isValidState();
     }
 
     /**

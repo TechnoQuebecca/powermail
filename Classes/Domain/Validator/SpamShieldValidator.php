@@ -65,7 +65,7 @@ class SpamShieldValidator extends AbstractValidator
      * @return bool
      * @throws Exception
      */
-    public function isValid($mail)
+    public function isValid(mixed $mail) : void
     {
         if ($this->isSpamShieldEnabled($mail)) {
             $this->runAllSpamMethods($mail);
@@ -79,7 +79,6 @@ class SpamShieldValidator extends AbstractValidator
                 $this->logSpamNotification($mail);
             }
         }
-        return $this->isValidState();
     }
 
     /**
