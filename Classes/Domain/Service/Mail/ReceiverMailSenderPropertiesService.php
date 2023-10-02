@@ -35,7 +35,7 @@ class ReceiverMailSenderPropertiesService
     /**
      * @param Mail $mail
      */
-    public function __construct(protected ?\In2code\Powermail\Domain\Model\Mail $mail, protected array $settings)
+    public function __construct(protected ?Mail $mail, protected array $settings)
     {
         $this->mailRepository = GeneralUtility::makeInstance(MailRepository::class);
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);

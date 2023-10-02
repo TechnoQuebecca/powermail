@@ -548,8 +548,8 @@ class MailRepository extends AbstractRepository
     public function removeFromDatabase(int $mailIdentifier): void
     {
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Mail::TABLE_NAME);
-        $queryBuilder->delete(Mail::TABLE_NAME)->where('uid=' . (int)$mailIdentifier)->execute();
+        $queryBuilder->delete(Mail::TABLE_NAME)->where('uid=' . (int)$mailIdentifier)->executeStatement();
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Answer::TABLE_NAME);
-        $queryBuilder->delete(Answer::TABLE_NAME)->where('mail=' . (int)$mailIdentifier)->execute();
+        $queryBuilder->delete(Answer::TABLE_NAME)->where('mail=' . (int)$mailIdentifier)->executeStatement();
     }
 }

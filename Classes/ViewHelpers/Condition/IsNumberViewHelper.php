@@ -3,6 +3,7 @@
 declare(strict_types=1);
 namespace In2code\Powermail\ViewHelpers\Condition;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
@@ -18,7 +19,7 @@ class IsNumberViewHelper extends AbstractViewHelper implements ViewHelperInterfa
     /**
      * Initialize arguments.
      *
-     * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception
+     * @throws Exception
      */
     public function initializeArguments()
     {

@@ -31,7 +31,7 @@ class Form extends AbstractEntity
     protected string $css = '';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Powermail\Domain\Model\Page>
+     * @var ObjectStorage<Page>
      */
     protected $pages;
 

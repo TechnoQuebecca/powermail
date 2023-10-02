@@ -105,9 +105,7 @@ class FieldRepository extends AbstractRepository
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Field::TABLE_NAME, true);
         $rows = $queryBuilder
             ->select('uid', 'pid', 'title', 'l10n_parent', 'sys_language_uid')
-            ->from(Field::TABLE_NAME)
-            ->where('(page = "" or page = 0) and sys_language_uid > 0 and deleted = 0')
-            ->execute()
+            ->from(Field::TABLE_NAME)->where('(page = "" or page = 0) and sys_language_uid > 0 and deleted = 0')->executeQuery()
             ->fetchAll();
         foreach ($rows as $row) {
             $pages[] = $row;
@@ -230,9 +228,7 @@ class FieldRepository extends AbstractRepository
         return (string)$queryBuilder
             ->select('marker')
             ->from(Field::TABLE_NAME)
-            ->where('uid=' . (int)$uid)
-            ->setMaxResults(1)
-            ->execute()
+            ->where('uid=' . (int)$uid)->setMaxResults(1)->executeQuery()
             ->fetchColumn();
     }
 
@@ -246,9 +242,7 @@ class FieldRepository extends AbstractRepository
         return (string)$queryBuilder
             ->select('type')
             ->from(Field::TABLE_NAME)
-            ->where('uid=' . (int)$uid)
-            ->setMaxResults(1)
-            ->execute()
+            ->where('uid=' . (int)$uid)->setMaxResults(1)->executeQuery()
             ->fetchColumn();
     }
 }

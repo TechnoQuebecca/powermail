@@ -165,9 +165,7 @@ class FormRepository extends AbstractRepository
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Form::TABLE_NAME);
         $queryBuilder
             ->update(Form::TABLE_NAME)
-            ->where('sys_language_uid > 0 and deleted = 0 and pages = ""')
-            ->set('pages', 0)
-            ->execute();
+            ->where('sys_language_uid > 0 and deleted = 0 and pages = ""')->set('pages', 0)->executeStatement();
     }
 
     /**
@@ -188,9 +186,7 @@ class FormRepository extends AbstractRepository
             ->join('f', Page::TABLE_NAME, 'p', 'f.page = p.uid')
             ->join('p', Form::TABLE_NAME, 'fo', 'p.form = fo.uid')
             ->where($where)
-            ->orderBy('f.sorting', 'asc')
-            ->setMaxResults(10000)
-            ->execute()
+            ->orderBy('f.sorting', 'asc')->setMaxResults(10000)->executeQuery()
             ->fetchAll();
     }
 

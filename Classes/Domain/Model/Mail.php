@@ -3,6 +3,7 @@
 declare(strict_types=1);
 namespace In2code\Powermail\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use DateTime;
 use In2code\Powermail\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -42,9 +43,9 @@ class Mail extends AbstractEntity
     protected $body = '';
 
     /**
-     * @var \In2code\Powermail\Domain\Model\User
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var User
      */
+    #[Lazy]
     protected $feuser = null;
 
     /**
@@ -68,14 +69,14 @@ class Mail extends AbstractEntity
     protected $time = null;
 
     /**
-     * @var \In2code\Powermail\Domain\Model\Form
+     * @var Form
      */
     protected $form = null;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Powermail\Domain\Model\Answer>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Answer>
      */
+    #[Lazy]
     protected $answers = null;
 
     /**

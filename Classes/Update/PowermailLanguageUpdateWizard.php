@@ -87,9 +87,7 @@ class PowermailLanguageUpdateWizard implements UpgradeWizardInterface
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Mail::TABLE_NAME);
         return (int)$queryBuilder
             ->count('sys_language_uid')
-            ->from(Mail::TABLE_NAME)
-            ->where('sys_language_uid > -1')
-            ->execute()
+            ->from(Mail::TABLE_NAME)->where('sys_language_uid > -1')->executeQuery()
             ->fetchColumn() > 0;
     }
 
@@ -101,9 +99,7 @@ class PowermailLanguageUpdateWizard implements UpgradeWizardInterface
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Answer::TABLE_NAME);
         return (int)$queryBuilder
             ->count('sys_language_uid')
-            ->from(Answer::TABLE_NAME)
-            ->where('sys_language_uid > -1')
-            ->execute()
+            ->from(Answer::TABLE_NAME)->where('sys_language_uid > -1')->executeQuery()
             ->fetchColumn() > 0;
     }
 }

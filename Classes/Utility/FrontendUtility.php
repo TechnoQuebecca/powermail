@@ -96,7 +96,7 @@ class FrontendUtility
      */
     public static function getCharset(): string
     {
-        return ObjectUtility::getTyposcriptFrontendController()->metaCharset;
+        return 'utf-8';
     }
 
     /**

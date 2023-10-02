@@ -119,9 +119,7 @@ class FormSelectorUserFunc
             ->select('*')
             ->from(Form::TABLE_NAME)
             ->where($this->getWhereStatement($startPid, $language))
-            ->orderBy('title')
-            ->setMaxResults(10000)
-            ->execute();
+            ->orderBy('title')->setMaxResults(10000)->executeQuery();
         return $result->fetchAll();
     }
 

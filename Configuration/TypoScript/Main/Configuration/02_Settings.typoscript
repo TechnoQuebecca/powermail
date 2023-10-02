@@ -9,7 +9,6 @@ plugin.tx_powermail.settings.setup {
     optin = {$plugin.tx_powermail.settings.main.optin}
     moresteps = {$plugin.tx_powermail.settings.main.moresteps}
   }
-
   misc {
     # HTML Output for type HMTL fields
     htmlForHtmlFields = {$plugin.tx_powermail.settings.misc.htmlForHtmlFields}
@@ -35,7 +34,6 @@ plugin.tx_powermail.settings.setup {
       randomizePrependOriginalFileName = {$plugin.tx_powermail.settings.misc.randomizePrependOriginalFileName}
     }
   }
-
   # Don't touch this (this is just to let the extension know, that there is TypoScript included)
   staticTemplate = 1
 }

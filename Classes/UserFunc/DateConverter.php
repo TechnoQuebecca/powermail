@@ -13,7 +13,7 @@ class DateConverter
     /**
      * @var ContentObjectRenderer
      */
-    public $cObj;
+    protected $cObj;
 
     /**
      * UserFunc configuration TypoScript
@@ -185,5 +185,10 @@ class DateConverter
     public function getDate(): \DateTime
     {
         return $this->date;
+    }
+
+    public function setContentObjectRenderer(ContentObjectRenderer $cObj): void
+    {
+        $this->cObj = $cObj;
     }
 }

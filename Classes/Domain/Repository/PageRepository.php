@@ -71,9 +71,7 @@ class PageRepository extends AbstractRepository
         $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Page::TABLE_NAME, true);
         return $queryBuilder
             ->select('uid', 'pid', 'title', 'l10n_parent', 'sys_language_uid')
-            ->from(Page::TABLE_NAME)
-            ->where('(form = "" or form = 0) and sys_language_uid > 0 and deleted = 0')
-            ->execute()
+            ->from(Page::TABLE_NAME)->where('(form = "" or form = 0) and sys_language_uid > 0 and deleted = 0')->executeQuery()
             ->fetchAll();
     }
 
@@ -91,9 +89,7 @@ class PageRepository extends AbstractRepository
             $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Page::TABLE_NAME);
             $queryBuilder
                 ->update(Page::TABLE_NAME)
-                ->where('uid = ' . (int)$page['uid'])
-                ->set('form', $localizedFormUid)
-                ->execute();
+                ->where('uid = ' . (int)$page['uid'])->set('form', $localizedFormUid)->executeStatement();
         }
     }
 
@@ -105,7 +101,7 @@ class PageRepository extends AbstractRepository
     public function getAllPages(): array
     {
         $querybuilder = DatabaseUtility::getQueryBuilderForTable('pages', true);
-        $rows = $querybuilder->select('uid')->from('pages')->execute()->fetchAll();
+        $rows = $querybuilder->select('uid')->from('pages')->executeQuery()->fetchAll();
         $pids = [];
         foreach ($rows as $row) {
             $pids[] = (int)$row['uid'];

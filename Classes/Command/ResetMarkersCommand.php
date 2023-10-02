@@ -58,9 +58,7 @@ class ResetMarkersCommand extends Command
                 $queryBuilder = DatabaseUtility::getQueryBuilderForTable(Field::TABLE_NAME);
                 $queryBuilder
                     ->update(Field::TABLE_NAME)
-                    ->where($queryBuilder->expr()->eq('uid', (int)$uid))
-                    ->set('marker', $marker)
-                    ->execute();
+                    ->where($queryBuilder->expr()->eq('uid', (int)$uid))->set('marker', $marker)->executeStatement();
             }
         }
         $output->writeln('Markers successfully resetted');

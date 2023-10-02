@@ -19,7 +19,7 @@ class DataProcessorRunner
     /**
      * @var string
      */
-    protected string $interface = \In2code\Powermail\DataProcessor\DataProcessorInterface::class;
+    protected string $interface = DataProcessorInterface::class;
 
     /**
      * @throws Exception

@@ -4,8 +4,8 @@
 plugin.tx_powermail.settings.setup {
   thx {
     # Following settings are normally set via Flexform
-    body =
-    redirect =
+    body = 
+    redirect = 
 
     overwrite {
       # EXAMPLE: Overwrite redirect with TypoScript cObject

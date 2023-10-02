@@ -339,9 +339,7 @@ class SaveToAnyTableService
         return (array)$queryBuilder
             ->select($this->getUniqueIdentifier())
             ->from($this->getTable())
-            ->where($where)
-            ->setMaxResults(1)
-            ->execute()
+            ->where($where)->setMaxResults(1)->executeQuery()
             ->fetch();
     }
 

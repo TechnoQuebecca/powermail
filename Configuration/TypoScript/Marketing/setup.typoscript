@@ -30,7 +30,6 @@ page {
       data = TSFE:id
       intval = 1
     }
-
     # Current FE Language Uid
     20 = TEXT
     20 {
@@ -38,7 +37,6 @@ page {
       data = TSFE:sys_language_uid
       intval = 1
     }
-
     30 = TEXT
     30 {
       noTrimWrap = | data-url="|"|
@@ -50,7 +48,6 @@ page {
       }
     }
   }
-
   # Add JavaScript
   includeJSFooter {
     powermailMarketing = EXT:powermail/Resources/Public/JavaScript/Powermail/Marketing.min.js
@@ -70,7 +67,6 @@ powermailMarketing {
     admPanel = 0
     debug = 0
   }
-
   10 = USER_INT
   10 {
     userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run

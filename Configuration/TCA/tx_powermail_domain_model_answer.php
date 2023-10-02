@@ -46,7 +46,7 @@ $answersTca = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => Answer::TABLE_NAME,
                 'foreign_table_where' => 'AND ' . Answer::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
@@ -118,33 +118,33 @@ $answersTca = [
                      * Text
                      */
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
                         Answer::TABLE_NAME . '.value_type.0',
-                        '0',
+                        'value' => '0',
                     ],
                     /**
                      * Multi Text (Array)
                      */
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
                         Answer::TABLE_NAME . '.value_type.1',
-                        '1',
+                        'value' => '1',
                     ],
                     /**
                      * Date
                      */
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
                         Answer::TABLE_NAME . '.value_type.2',
-                        '2',
+                        'value' => '2',
                     ],
                     /**
                      * Upload
                      */
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' .
                         Answer::TABLE_NAME . '.value_type.3',
-                        '3',
+                        'value' => '3',
                     ],
                 ],
             ],
@@ -154,7 +154,6 @@ $answersTca = [
             'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Answer::TABLE_NAME . '.field',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => Field::TABLE_NAME,
                 'size' => 1,
                 'maxitems' => 1,
@@ -167,7 +166,6 @@ $answersTca = [
             'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Answer::TABLE_NAME . '.mail',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => Mail::TABLE_NAME,
                 'size' => 1,
                 'maxitems' => 1,

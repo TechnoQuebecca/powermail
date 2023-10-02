@@ -52,7 +52,7 @@ $pagesTca = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => Page::TABLE_NAME,
                 'foreign_table_where' => 'and ' . Page::TABLE_NAME . '.pid=###CURRENT_PID### AND ' .
@@ -108,7 +108,8 @@ $pagesTca = [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'css' => [
@@ -120,24 +121,24 @@ $pagesTca = [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:pleaseChoose',
-                        '',
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:pleaseChoose',
+                        'value' => '',
                     ],
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.1',
-                        'layout1',
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.1',
+                        'value' => 'layout1',
                     ],
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.2',
-                        'layout2',
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.2',
+                        'value' => 'layout2',
                     ],
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.3',
-                        'layout3',
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.3',
+                        'value' => 'layout3',
                     ],
                     [
-                        'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.4',
-                        'nolabel',
+                        'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Page::TABLE_NAME . '.css.4',
+                        'value' => 'nolabel',
                     ],
                 ],
                 'size' => 1,
@@ -172,7 +173,7 @@ $pagesTca = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => Form::TABLE_NAME,
                 'foreign_table_where' => 'and ' . Form::TABLE_NAME . '.pid=###CURRENT_PID### ' .

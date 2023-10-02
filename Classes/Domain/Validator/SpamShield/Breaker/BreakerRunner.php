@@ -24,7 +24,7 @@ class BreakerRunner
     /**
      * @param Mail $mail
      */
-    public function __construct(protected ?\In2code\Powermail\Domain\Model\Mail $mail, protected array $settings, protected array $flexForm)
+    public function __construct(protected ?Mail $mail, protected array $settings, protected array $flexForm)
     {
     }
 

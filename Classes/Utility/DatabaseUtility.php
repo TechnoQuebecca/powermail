@@ -83,9 +83,7 @@ class DatabaseUtility
             $queryBuilder = self::getQueryBuilderForTable($tableName, true);
             return (int)$queryBuilder
                     ->count($fieldName)
-                    ->from($tableName)
-                    ->where($fieldName . ' != "" and ' . $fieldName . ' != 0')
-                    ->execute()
+                    ->from($tableName)->where($fieldName . ' != "" and ' . $fieldName . ' != 0')->executeQuery()
                     ->fetchColumn() > 0;
         }
         return false;

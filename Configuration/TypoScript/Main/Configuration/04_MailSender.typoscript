@@ -6,10 +6,10 @@ plugin.tx_powermail.settings.setup {
     enable = {$plugin.tx_powermail.settings.sender.enable}
 
     # Following settings are normally set via Flexform
-    name =
-    email =
-    subject =
-    body =
+    name = 
+    email = 
+    subject = 
+    body = 
 
     # add file attachments from upload fields
     attachment = {$plugin.tx_powermail.settings.sender.attachment}
@@ -26,7 +26,6 @@ plugin.tx_powermail.settings.setup {
       senderName = TEXT
       senderName.value = {$plugin.tx_powermail.settings.sender.default.senderName}
     }
-
     # Normally you do not need to overwrite a flexform settings, but this allows you to use cObject functions
     overwrite {
       email = TEXT
@@ -65,7 +64,6 @@ plugin.tx_powermail.settings.setup {
       # Set mail priority from 1 to 5
       priority = {$plugin.tx_powermail.settings.sender.overwrite.priority}
     }
-
     # EXAMPLE: Add additional attachments to the mail (separate each with comma)
     # addAttachment = TEXT
     # addAttachment.value = fileadmin/file.jpg

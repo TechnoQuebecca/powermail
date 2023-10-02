@@ -3,6 +3,7 @@
 declare(strict_types=1);
 namespace In2code\Powermail\Controller;
 
+use In2code\Powermail\Domain\Validator\InputValidator;
 use Doctrine\DBAL\DBALException;
 use In2code\Powermail\Domain\Model\Mail;
 use In2code\Powermail\Exception\DeprecatedException;
@@ -130,7 +131,6 @@ class OutputController extends AbstractController
     }
 
     /**
-     * @ExtbaseAnnotation\Validate("In2code\Powermail\Domain\Validator\InputValidator", param="mail")
      * @return void
      * @throws StopActionException
      * @throws UnsupportedRequestTypeException
@@ -139,6 +139,7 @@ class OutputController extends AbstractController
      * @throws \Exception
      * @noinspection PhpUnused
      */
+    #[ExtbaseAnnotation\Validate(['validator' => InputValidator::class, 'param' => 'mail'])]
     public function updateAction(Mail $mail): void
     {
         $this->uploadService->uploadAllFiles();

@@ -56,7 +56,6 @@ plugin.tx_powermail.settings.setup {
       # position.field = uid
     }
 
-
     ##############################################################
     ### EXAMPLE for building a relation to tt_address_group    ###
     ### over the MM table tt_address_group_mm                  ###

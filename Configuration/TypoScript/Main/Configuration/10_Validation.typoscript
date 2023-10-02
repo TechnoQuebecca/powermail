@@ -16,7 +16,6 @@ plugin.tx_powermail.settings.setup {
       # EXAMPLE: Enable a max limit of 3 times for the same entry for {event}
       #event = 3
     }
-
     ##########################################################
     # EXAMPLE: CUSTOMVALIDATION
     #
@@ -38,7 +37,6 @@ plugin.tx_powermail.settings.setup {
       # 100 = In2code\Powermailextended\Domain\Validator\ZipValidator
     }
   }
-
   # EXAMPLE: Add own validator classes that will be called before create action (if you want to validate user input with own PHP classes)
   validators {
     # 1 {

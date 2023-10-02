@@ -16,7 +16,6 @@ plugin.tx_powermail {
           }
         }
       }
-
       rss {
         title = Powermail RSS Feed
         link = http://www.in2code.de
@@ -26,7 +25,6 @@ plugin.tx_powermail {
         updatePeriod = hourly
         updateFrequency = 1
       }
-
       misc {
         file {
           folder = uploads/tx_powermail/
@@ -36,7 +34,6 @@ plugin.tx_powermail {
           randomizePrependOriginalFileName = {$plugin.tx_powermail.settings.misc.randomizePrependOriginalFileName}
         }
       }
-
       # Don't touch this (this is just to let the extension know, that there is TypoScript included)
       staticTemplate = 1
 
@@ -78,7 +75,6 @@ powermail_frontend_xls {
       40.header = Pragma:
     }
   }
-
   10 < styles.content.get
 }
 
@@ -109,7 +105,6 @@ powermail_frontend_rss {
     admPanel = 0
     additionalHeaders.10.header = Content-type:application/xml
   }
-
   10 < styles.content.get
 }
 
@@ -120,8 +115,7 @@ tt_content.list {
     99 = EXT:powermail/Resources/Private/Layouts/ContentElements/Export/
   }
 }
-[end]
-
+[global]
 
 ############################
 # JavaScript and CSS section
@@ -145,4 +139,4 @@ plugin.tx_powermail {
     }
   }
 }
-[end]
+[global]

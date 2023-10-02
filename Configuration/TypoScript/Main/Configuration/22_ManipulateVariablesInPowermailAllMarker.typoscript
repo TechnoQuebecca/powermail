@@ -17,7 +17,6 @@ plugin.tx_powermail.settings.setup {
       #   default.value = blue
       # }
     }
-
     # On Submitpage
     submitPage {
       # manipulate values by given marker (e.g. firstname, email, referrer) with TypoScript - available fieldnames (access with .field=): value, valueType, uid, pid
@@ -32,7 +31,6 @@ plugin.tx_powermail.settings.setup {
       #   default.value = blue
       # }
     }
-
     # In Mail to receiver
     receiverMail {
       # manipulate values by given marker (e.g. firstname, email, referrer) with TypoScript - available fieldnames (access with .field=): value, valueType, uid, pid
@@ -47,7 +45,6 @@ plugin.tx_powermail.settings.setup {
       #   default.value = blue
       # }
     }
-
     # In Mail to sender (if activated)
     senderMail {
       # manipulate values by given marker (e.g. firstname, email, referrer) with TypoScript - available fieldnames (access with .field=): value, valueType, uid, pid
@@ -62,7 +59,6 @@ plugin.tx_powermail.settings.setup {
       #   default.value = blue
       # }
     }
-
     # In double-opt-in Mail to sender (if activated)
     optinMail {
       # manipulate values by given marker (e.g. firstname, email, referrer) with TypoScript - available fieldnames (access with .field=): value, valueType, uid, pid

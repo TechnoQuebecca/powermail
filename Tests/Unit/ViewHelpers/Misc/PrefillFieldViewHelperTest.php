@@ -2,6 +2,7 @@
 
 namespace In2code\Powermail\Tests\Unit\ViewHelpers\Misc;
 
+use TYPO3\CMS\Extbase\Object\Exception;
 use In2code\Powermail\Domain\Model\Field;
 use In2code\Powermail\ViewHelpers\Misc\PrefillFieldViewHelper;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
@@ -202,7 +203,7 @@ class PrefillFieldViewHelperTest extends UnitTestCase
      * @covers ::render
      * @covers ::getValue
      * @covers ::buildValue
-     * @throws \TYPO3\CMS\Extbase\Object\Exception
+     * @throws Exception
      */
     public function getDefaultValueReturnsString($fieldValues, $variables, $configuration, $expectedResult)
     {

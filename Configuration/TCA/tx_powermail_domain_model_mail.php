@@ -63,7 +63,7 @@ $mailsTca = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => Mail::TABLE_NAME,
                 'foreign_table_where' => 'and ' . Mail::TABLE_NAME . '.pid=###CURRENT_PID### and ' .
@@ -227,7 +227,6 @@ $mailsTca = [
             'label' => 'LLL:EXT:powermail/Resources/Private/Language/locallang_db.xlf:' . Mail::TABLE_NAME . '.feuser',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'fe_users',
                 'size' => 1,
                 'minitems' => 0,

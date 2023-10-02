@@ -51,7 +51,7 @@ class ReceiverMailReceiverPropertiesService
      * @throws InvalidSlotException
      * @throws InvalidSlotReturnException
      */
-    public function __construct(protected ?\In2code\Powermail\Domain\Model\Mail $mail, protected array $settings)
+    public function __construct(protected ?Mail $mail, protected array $settings)
     {
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
         $this->configuration = $typoScriptService->convertPlainArrayToTypoScriptArray($this->settings);

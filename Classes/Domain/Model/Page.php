@@ -29,7 +29,7 @@ class Page extends AbstractEntity
     protected string $css = '';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\In2code\Powermail\Domain\Model\Field>
+     * @var ObjectStorage<Field>
      */
     protected $fields = null;
 
