@@ -4,4 +4,4 @@ Feature: NoTypoScript
 
   Scenario: Check if No-TypoScript-Message appears
     Given I am on "/powermail/pi2/list-ohne-ts"
-    Then I should see "TypoScript benötigt"
+    Then I should see "TypoScript benötigt. Sind Sie sicher, dass Sie die erforderlichen Static Templates eingebunden haben?"
